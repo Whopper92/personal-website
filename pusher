@@ -4,4 +4,4 @@
 sed -i "s/Last updated .\{3\} .\{3\} [0-9]\{2\} [0-9]\{2\}:[0-9]\{2\}:[0-9]\{2\} PDT [0-9]\{4\}/Last updated `date`/" ./index.html
 git add ./index.html
 git commit --amend --no-edit
-git push -f origin master
+git push origin master
