@@ -3,6 +3,5 @@
 # A simple script to 'git push' the project and update its 'last updated' time
 sed -i "s/Last updated .\{3\} .\{3\} [0-9]\{2\} [0-9]\{2\}:[0-9]\{2\}:[0-9]\{2\} PDT [0-9]\{4\}/Last updated `date`/" ./index.html
 git add ./index.html
-lastCommit=$(git log --format=%B -n 1)
-git commit --amend -m "$lastCommit"
+git commit --amend --no-edit
 git push -f origin master
