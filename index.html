@@ -3,11 +3,9 @@
   <head>
     <meta charset="utf8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will's Home</title>
-    <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <link rel="stylesheet" media="screen" href="style/bootstrap.min.css">
     <link rel="stylesheet" media="screen" href="style/general.css">
+    <title>Will's Home</title>
   </head>
   <body>
     <div class='navbar navbar-inverse navbar-fixed-top'>
@@ -21,8 +19,8 @@
           <a class="brand" href="/~hopperw">Will Hopper</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class='active'><a href="#">Home</a></li>
-              <li class="dropdown">
+              <li id='homeButton' class='active'><a href="#">Home</a></li>
+              <li id='aboutButton' class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown">
                   About
                   <b class="caret"></b>
@@ -33,7 +31,7 @@
                   <li><a href="#">Calendar</a></li>
                 </ul>
               </li>
-              <li class="dropdown">
+              <li id='projectsButton' class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown">
                   Projects
                   <b class="caret"></b>
@@ -46,7 +44,7 @@
                   <li><a href="#">Rooky</a></li>
                 </ul>
               </li>
-              <li><a href="#">Contact</a></li>
+              <li id='contactButton'><a href="#">Contact</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -54,8 +52,28 @@
     </div>
     <div id='footer' class="navbar navbar-fixed-bottom">
       <div class='container'>
-        <p class='muted credit'>Last updated Thu Aug 15 20:03:26 PDT 2013</p>
+        <p class='muted credit'>Last updated Thu Aug 15 20:35:37 PDT 2013</p>
       </div>
     </div>
   </body>
 </html>
+
+<!-- Load up needed JavaScript -->
+<script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+<script type='text/javascript'>
+  $(document).ready(function() {
+    $.getScript('js/bootstrap.min.js')
+    $('#homeButton').on('click', function() { navBarActiveize('#homeButton') })
+    $('#aboutButton').on('click', function() { navBarActiveize('#aboutButton') })
+    $('#projectsButton').on('click', function() { navBarActiveize('#projectsButton') })
+    $('#contactButton').on('click', function() { navBarActiveize('#contactButton') })
+
+    function navBarActiveize(divid) {
+      $('#homeButton').removeClass('active')
+      $('#aboutButton').removeClass('active')
+      $('#projectsButton').removeClass('active')
+      $('#contactButton').removeClass('active')
+      $(divid).addClass('active')
+    };
+  })
+</script>
