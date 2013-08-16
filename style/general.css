@@ -2,6 +2,10 @@
   margin-left: 20px;
 }
 
+.dropdown {
+  cursor: pointer;
+}
+
 #footer {
   background-color: #1b1b1b;
 }
