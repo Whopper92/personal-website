@@ -5,4 +5,4 @@ sed -i "s/Last updated .\{3\} .\{3\} [0-9]\{2\} [0-9]\{2\}:[0-9]\{2\}:[0-9]\{2\}
 git add ./index.html
 lastCommit=$(git log --format=%B -n 1)
 git commit --amend -m "$lastCommit"
-git push origin master
+git push -f origin master
