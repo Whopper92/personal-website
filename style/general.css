@@ -1,6 +1,4 @@
 body {
-  /* background-color: #FFFFFF; */
-  height: 700px;
   background-color: #F0F0F0;
 }
 
@@ -13,14 +11,10 @@ body {
 }
 
 .centerMainContainer {
-  /* background-color: #E8E8E8; */
-  margin-top: 45px;
-  height: 680px;
+  min-height: 600px;
+  min-width: 600px;
+  margin-top: 60px;
   background-color: #FFFFFF;
-}
-
-.mainContentContainer {
-  height: 660px;
 }
 
 #mainTitle,
