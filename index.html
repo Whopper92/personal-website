@@ -9,9 +9,9 @@
   </head>
   <body>
 
-    <nav class='navbar navbar-default navbar-static-top' role='navigation'>
+    <nav class='navbar navbar-default navbar-static-top navbar-inverse' role='navigation'>
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
@@ -39,10 +39,10 @@
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-              <li class='nav-header'>Open Source</li>
+              <li class='dropdown-header'>Open Source</li>
               <li><a href="#">Build Board</a></li>
               <li class="divider"></li>
-              <li class='nav-header'>Course Work</li>
+              <li class='dropdown-header'>Course Work</li>
               <li><a href="#">Rooky</a></li>
             </ul>
           </li>
@@ -61,23 +61,29 @@
               <div id='mainTitle' class='col-md-6'><h1>Welcome</h1></div>
             </div>
             <div class='row'>
-              <div id='secondaryTitle' class='col-md-12'><p class='lead'>This is my personal website, hosted through Portland State University </p></div>
+              <div id='secondaryTitle' class='col-md-12'><p class='lead'>This is my personal website, hosted through <a id='psuText' href='http://www.pdx.edu'>Portland State University.</a></p></div>
             </div>
           </div>
           <div class='page-content'>
             <!-- Left side bar -->
-            <div id='sideContent' class='col-md-3'>
+            <div id='sideContent' class='col-md-5'>
+              <a href="#" class="thumbnail"><img src="img/me.jpg" alt="Me!"></a>
+              <p id='selfImgCaption' class='text-muted'>Me at the beach, Summer of 2013!</p>
             </div>
               <!-- Main content-->
-            <div id='centerContent' class='col-md-8'>
+            <div id='centerContent' class='col-md-6'>
+              <blockquote>Hello, and welcome to my little site! My name is Will, and I am an aspiring software developer, currently in the thick of obtaining an Undergraduate degree at Portland State University.<br><br>The existence of this site is mostly the product of my keen interest in web development, and all of the excellent things that can be accomplished with today's tools of the web. I'll be using this website as a playground of sorts for learning new techniques and finding ways to apply them while building something useful!<hr>
+
+              <h3 id='linkSectionTitle' class='text-muted'>Links to My Stuff</h3>
+              <a href='https://github.com/Whopper92'><img class='linkIcons' src='img/github-icon2.png'></a><a href='http://www.linkedin.com/pub/william-hopper/50/41a/159'><img class='linkIcons' src='img/linkedin-logo1.png'></a></blockquote>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <nav id='footer' class="navbar navbar-default navbar-fixed-bottom" role='navigation'>
+    <nav id='footer' class="navbar navbar-default navbar-fixed-bottom navbar-inverse" role='navigation'>
       <div class='container'>
-        <p class='muted credit'>Last updated Sun Jan  5 10:14:19 PST 2014</p>
+        <p class='text-muted'>Last updated Sun Jan  5 10:14:19 PST 2014</p>
       </div>
     </nav>
   </body>
