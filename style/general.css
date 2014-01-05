@@ -2,25 +2,24 @@ body {
   background-color: #F0F0F0;
 }
 
-.navbar .container {
-  margin-left: 20px;
-}
-
 .dropdown {
   cursor: pointer;
 }
 
 .centerMainContainer {
-  min-height: 600px;
-  min-width: 600px;
-  margin-top: 60px;
+  min-height: 500px;
+  margin-top: 25px;
   background-color: #FFFFFF;
+}
+
+#mainRow {
+  width: 100%;
 }
 
 #mainTitle,
 #secondaryTitle,
 #sideContent {
-  margin-left: 40px;
+  margin-left: 30px;
 }
 
 #mainTitle {
@@ -37,8 +36,8 @@ body {
 }
 
 #footer {
-  height: 40px;
-  background-color: #1b1b1b;
+  height: 25px;
+/*  background-color: #1b1b1b; */
 }
 
 #footer p {
