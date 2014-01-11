@@ -40,11 +40,13 @@
             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
               <li class='dropdown-header'>Open Source</li>
               <li id='buildBoard'><a href="#">Build Board</a></li>
+              <li id='sysadminTools'><a href="#">SysAdmin Tools</a></li>
               <li class="divider"></li>
               <li class='dropdown-header'>Course Work</li>
               <li id='rooky'><a href="#">Rooky</a></li>
             </ul>
           </li>
+          <li id='blogButton'><a href="#">Blog</a></li>
           <li id='contactButton'><a href="#">Contact</a></li>
         </ul>
       </div><!--/.nav-collapse -->
@@ -85,6 +87,7 @@
     $('#homeButton').on('click', function() { navBarActiveize('#homeButton') })
     $('#aboutButton').on('click', function() { navBarActiveize('#aboutButton') })
     $('#projectsButton').on('click', function() { navBarActiveize('#projectsButton') })
+    $('#blogButton').on('click', function() { navBarActiveize('#blogButton') })
     $('#contactButton').on('click', function() { navBarActiveize('#contactButton') })
 
 
@@ -92,13 +95,16 @@
     $('#resumeButton').on('click', function() { loadPage('resume') })
     $('#calendarButton').on('click', function() { loadPage('calendar') })
     $('#buildBoard').on('click', function() { loadPage('buildBoard') })
+    $('#sysadminTools').on('click', function() { loadPage('sysadminTools') })
     $('#rooky').on('click', function() { loadPage('rooky') })
+    $('#blogButton').on('click', function() { loadPage('blog') })
     $('#contactButton').on('click', function() { loadPage('contact') })
 
     function navBarActiveize(divid) {
       $('#homeButton').removeClass('active')
       $('#aboutButton').removeClass('active')
       $('#projectsButton').removeClass('active')
+      $('#blogButton').removeClass('active')
       $('#contactButton').removeClass('active')
       $(divid).addClass('active')
     };
