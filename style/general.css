@@ -66,3 +66,12 @@ body {
   height: 75px;
   width: 75px;
 }
+
+.resumeTime {
+  color: gray;
+  font-size: 10px;
+}
+
+#resumeLinkedin {
+  margin-left: 5px;
+}

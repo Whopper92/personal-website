@@ -28,9 +28,8 @@
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-              <li><a href="#">About</a></li>
-              <li><a href="#">resumé</a></li>
-              <li><a href="#">Calendar</a></li>
+              <li id='resumeButton'><a href="#">Resumé</a></li>
+              <li id='calendarButton'><a href="#">Calendar</a></li>
             </ul>
           </li>
           <li id='projectsButton' class="dropdown">
@@ -40,10 +39,10 @@
             </a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
               <li class='dropdown-header'>Open Source</li>
-              <li><a href="#">Build Board</a></li>
+              <li id='buildBoard'><a href="#">Build Board</a></li>
               <li class="divider"></li>
               <li class='dropdown-header'>Course Work</li>
-              <li><a href="#">Rooky</a></li>
+              <li id='rooky'><a href="#">Rooky</a></li>
             </ul>
           </li>
           <li id='contactButton'><a href="#">Contact</a></li>
@@ -56,34 +55,15 @@
     <div id='mainRow' class='row'>
       <div class='col-md-10 col-md-offset-1 centerMainContainer'>
         <div class='col-md-10 col-md-offset-1 mainContentContainer'>
-          <div class='page-header'>
-            <div class='row'>
-              <div id='mainTitle' class='col-md-6'><h1>Welcome</h1></div>
-            </div>
-            <div class='row'>
-              <div id='secondaryTitle' class='col-md-12'><p class='lead'>This is my personal website, hosted through <a id='psuText' href='http://www.pdx.edu'>Portland State University.</a></p></div>
-            </div>
-          </div>
-          <div class='page-content'>
-            <!-- Left side bar -->
-            <div id='sideContent' class='col-md-5'>
-              <a href="#" class="thumbnail"><img src="img/me.jpg" alt="Me!"></a>
-              <p id='selfImgCaption' class='text-muted'>Me at the beach, Summer of 2013!</p>
-            </div>
-              <!-- Main content-->
-            <div id='centerContent' class='col-md-6'>
-              <blockquote>Hello, and welcome to my little site! My name is Will, and I am an aspiring software developer, currently in the thick of obtaining an Undergraduate degree at Portland State University.<br><br>The existence of this site is mostly the product of my keen interest in web development, and all of the excellent things that can be accomplished with today's tools of the web. I'll be using this website as a playground of sorts for learning new techniques and finding ways to apply them while building something useful!<hr>
 
-              <h3 id='linkSectionTitle' class='text-muted'>Links to My Stuff</h3>
-              <a href='https://github.com/Whopper92'><img class='linkIcons' src='img/github-icon2.png'></a><a href='http://www.linkedin.com/pub/william-hopper/50/41a/159'><img class='linkIcons' src='img/linkedin-logo1.png'></a></blockquote>
-            </div>
-          </div>
+          <!--  ==================   Templates go here =========  -->
+
         </div>
       </div>
     </div>
     <nav id='footer' class="navbar navbar-default navbar-fixed-bottom navbar-inverse" role='navigation'>
       <div class='container'>
-        <p class='text-muted'>Last updated Sun Jan 5 10:14:19 PST 2014</p>
+        <p class='text-muted'>Last updated 01-05-14, at 13:09:29 PST 2014</p>
       </div>
     </nav>
   </body>
@@ -100,10 +80,20 @@
       $('.mainContentContainer').css('min-width', '600px')
     }
 
+    $('.mainContentContainer').load('views/home.html');
+
     $('#homeButton').on('click', function() { navBarActiveize('#homeButton') })
     $('#aboutButton').on('click', function() { navBarActiveize('#aboutButton') })
     $('#projectsButton').on('click', function() { navBarActiveize('#projectsButton') })
     $('#contactButton').on('click', function() { navBarActiveize('#contactButton') })
+
+
+    $('#homeButton').on('click', function() { loadPage('home') })
+    $('#resumeButton').on('click', function() { loadPage('resume') })
+    $('#calendarButton').on('click', function() { loadPage('calendar') })
+    $('#buildBoard').on('click', function() { loadPage('buildBoard') })
+    $('#rooky').on('click', function() { loadPage('rooky') })
+    $('#contactButton').on('click', function() { loadPage('contact') })
 
     function navBarActiveize(divid) {
       $('#homeButton').removeClass('active')
@@ -112,5 +102,10 @@
       $('#contactButton').removeClass('active')
       $(divid).addClass('active')
     };
+
+    function loadPage(pageid) {
+      $('.mainContentContainer').html('');
+      $('.mainContentContainer').load('views/' + pageid + '.html');
+    }
   })
 </script>
