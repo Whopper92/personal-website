@@ -11,7 +11,7 @@ body {
 }
 
 .centerMainContainer {
-  min-height: 500px;
+  min-height: 800px;
   margin-top: 10px;
   padding-bottom: 30px;
   background-color: #FFFFFF;
@@ -32,7 +32,7 @@ body {
 }
 
 #mainTitle {
-  margin-top: 5px;
+  margin-top: 25px;
   height: 60px;
 }
 
