@@ -32,181 +32,23 @@
       </ul>
       <br>
       <div class="tab-content">
-        <div class="tab-pane fade in active" id="language">The language chosen to write a chess engine such as this has a huge impact on its eventual performance. Because the primary method of computing the "best" move is through simple brute force, languages implemented with a compiler allow much more efficient execution, and thus a much deeper search.<br><br>That being said, I decided to write my bot entirely in in Ruby programming lanuage. I did this simply because I greatly enjoy coding in Ruby, and I wanted to learn more about the language. By the class tournament at the end of the term, I certainly had a greater appreciation for the difference in program speeds between compiled and interpreted programs.<br><br>Indeed, I did not fare terribly well in the contest.</div>
-        <div class="tab-pane fade" id="board">A game of minichess is played on a five-by-six rectangular board. The AI must always possess a representation of the location of each of the pieces on the board, as well as each of the empty spaces. This data must be synced after the moves of either player, accounting for piece movement and captured pieces.<br><br>The most efficient way to represent all of this data in memory is with constructs known as bitboards. A bitboard, in the case of minichess, is a 30 bit integer, where each bit represents a position on the board. Many bitboards are needed to maintain data on various things, such as the location of the white knight, or of the black pawns. As piece movement occurs, bitwise operations are applied to the appropriate bitboards to change their contents.<br><br>In my board implementation, I did not utilize bitboards. Instead, I created a simple 2D array to represent the board, with ASCii characters represented each square's current state. I did this primarily because of the difficulty in implementing bitboards, as well as course time constraints.<br><br>
-  <pre>
-    def newBoard
-    # Reset all piece locations to create fresh board
-
-      @onMove          = 'W'
-      @onMoveInt       = 1
-      @turnCount       = 0
-      @whiteKingSym    = 'K'
-      @whiteQueenSym   = 'Q'
-      @whiteBishopSym  = 'B'
-      @whiteKnightSym  = 'N'
-      @whiteRookSym    = 'R'
-      @whitePawnSym    = 'P'
-
-      @blackKingSym    = 'k'
-      @blackQueenSym   = 'q'
-      @blackBishopSym  = 'b'
-      @blackKnightSym  = 'n'
-      @blackRookSym    = 'r'
-      @blackPawnSym    = 'p'
-      @board = [
-        ['R', 'N', 'B', 'Q', 'K'],
-        ['P', 'P', 'P', 'P', 'P'],
-        ['.', '.', '.', '.', '.'],
-        ['.', '.', '.', '.', '.'],
-        ['p', 'p', 'p', 'p', 'p'],
-        ['k', 'q', 'b', 'n', 'r']
-      ]
-    end
-  </pre>
-</div>
-        <div class="tab-pane fade" id="teaching">In implementations of game AI's for zero-sum games such as chess, the computer is actually quite dumb. In order to determine which moves are 'good,' the program scans through every possible, legal move. Using a hardcoded scoring system, each move is assigned a net score which can be compared with all of the other moves.<br><br>The AI then must have the ability to see several moves into the future, or it may capture a pawn with a queen, only to have its queen captured next turn. A efficient chess program written in something like C should be able to scan several million moves in one second. That means the AI is actually seeing six to seven moves into the future, recursively judging which immediate move will lead to the greatest net gain in score.<br><br>
-  <pre>
-  def moveScan(x0, y0, dx, dy, stopShort, capture, aState)
-  # This method is called many times by the moveList method,
-  # which passes in every combination of movement directions for
-  # a given piece for a given square position.
-    x = x0
-    y = y0
-    c = colorOf(x,y, aState)
-    moves     = []
-    validMove = []
-    loop do
-      x += dx
-      y += dy
-      break if not inBounds?(x, y)
-      if aState[y][x].to_s != '.'
-        break if colorOf(x, y, aState) == c  # Same color, so the move is invalid
-        if capture == false
-          break                              # We don't want to take this capture
-        else
-          stopShort = true                   # the capture move is valid
-        end
-      end
-      validMove = Move.new(Square.new(x0, y0), Square.new(x, y))
-      moves &lt&lt validMove
-      break if stopShort == true
-    end
-    return moves if moves != []
-  end
-  </pre>
-</div>
-        <div class="tab-pane fade" id="score">The previously mentioned scoring algorithm is actually rather simple. Each piece type is assigned a static value. A pawn, for example, may be worth 100 points. The current player may then find a move in which they capture an enemy pawn, which would increase the net score in their favor by 100 points.<br><br>Though effective enough to get an AI playing the game, this scoring system is not enough on its own. Other rules must be hardcoded in as well in order to elevate the 'strategy' of the AI, particularly in the early game. To do this, score values can be adjusted based on board location as well as piece type. One may provide incentive for the AI to move out its pawns early in the match by increasing the point value for movement of pawns out of starting positions.<br><br>
-<pre>  def scoreGen(aState, color)
-  # Returns the score of a state the will exist if the given move is executed.
-  # The score value is the score of the state that the opponent will receive,
-  # so the lower the number the 'better' for the side onMove
-
-    # Generate a score for this state --- my score - enemy
-    whiteScore = 0
-    blackScore = 0
-    boardIndex = -1
-    aState.flatten.each do |p|
-      boardIndex += 1
-      case p
-        when 'P'
-          whiteScore += 1000
-          if boardIndex == (11..13) or boardIndex == (16..18)
-            whiteScore += 300
-          end
-        when 'Q'
-          whiteScore += 9000
-          if boardIndex == (11..13) or boardIndex == (16..18)
-            whiteScore += 500
-          end
-        when 'K'
-          whiteScore += 100000
-          if boardIndex != 4
-            whiteScore -= 3000
-          end
-        when 'B'
-          if boardIndex != 2
-            whiteScore += 3500
-          else
-            whiteScore += 3000
-          end
-          whiteScore += 400 if boardIndex == (11..13)
-        when 'N'
-          if boardIndex != 1
-            whiteScore += 3000
-          else
-            whiteScore += 2500
-          end
-          whiteScore += 400 if boardIndex == (11..13)
-        when 'R'
-          if boardIndex != 0
-            whiteScore += 5500
-          else
-            whiteScore += 5000
-          end
-          whiteScore += 500 if boardIndex == (10..14)
-        when 'p'
-          blackScore += 1000
-          if boardIndex == (11..13) or boardIndex == (16..18)
-            blackScore += 300
-          end
-        when 'q'
-          blackScore += 9000
-          if boardIndex == (11..13) or boardIndex == (16..18)
-            blackScore += 500
-          end
-        when 'k'
-          blackScore += 100000
-          if boardIndex != 25
-            blackScore -= 3000
-          end
-        when 'b'
-          if boardIndex != 27
-            blackScore += 3500
-          else
-             blackScore += 3000
-          end
-          blackScore += 400 if boardIndex == (11..13) or boardIndex == (16..18)
-        when 'n'
-          if boardIndex != 28
-            blackScore += 3000
-          else
-            blackScore += 2500
-          end
-        when 'r'
-          if boardIndex != 29
-            blackScore += 5500
-          else
-            blackScore += 5000
-          end
-          blackScore += 500 if boardIndex == (15..19)
-      end
-    end
-    color == 1 ? blackScore = -blackScore : whiteScore = -whiteScore
-    stateScore = whiteScore + blackScore
-    return stateScore
-  end
-</pre>
-
-</div>
-        <div class="tab-pane fade" id="algorithms">In this course, three major algorithms were used to provide the real 'brains' of the AI:<br><br>
-          <div class='dl-horizontal'>
-            <dt>Negamax</dt>
-              <dd>Simply put, the negamax algorithm provides a simplified way to find the current net score of a particular move from either player's perspective, allowing the AI to look ahead and find good moves. Because move scans are deep, recursive searches, analyzing one move for the white player will also involve the analysis of many black player moves in deeper, future layers.<br></dd>
-  <div class='col-md-offset-5'>
-    <img class='rookyAlgorithmImg' src='img/tree-1.png'>
-  </div>
-<br>
-            <dt>Iterative Deepening</dd>
-              <dd>In order to prevent a chess AI from scanning moves forever, a time limit is generally enforced, limiting negamax search time to between one and seven seconds, depending on tournament rules. This presents a problem when using the negamax algorithm, as the timer may expire in the middle of the scan of a search level. To ensure the AI has a 'best' answer at any given time, iterative deepening is used to store the latest 'best' move, and a condition is added to the recursive negamax to halt searching should time run out.</dd><br>
-            <dt>Alpha-Beta Pruning</dt>
-              <dd>The concept behind alpha-beta pruning is rather complicated, but in essence the idea is to sort the first level of moves from best to worst value, traverse several levels down the first path and use the collected score value to determine if subsequent move paths should be searched at all.<br><br>This 'pruning' literally shaves off tens of thousands of unnecessary move node searches in the negamax search tree.</dd>
-  <div class='col-md-offset-5'>
-    <img class='rookyAlgorithmImg' src='img/tree-2.png'>
-  </div>
-          </div>
-        </div>
+        <div class="tab-pane fade in active" id="language"></div>
+        <div class="tab-pane fade" id="board"></div>
+        <div class="tab-pane fade" id="teaching"></div>
+        <div class="tab-pane fade" id="score"></div>
+        <div class="tab-pane fade" id="algorithms"></div>
       </div>
     </div>
   </div>
 </div>
+
+<script type='text/javascript'>
+  // Load in the bulky project reflection texts
+  $(document).ready(function() {
+    $('#language').load('views/examples/rookyLanguageSelectionText.html');
+    $('#board').load('views/examples/rookyBoardGenerationText.html');
+    $('#teaching').load('views/examples/rookyTeachingAIText.html');
+    $('#score').load('views/examples/rookyScoreGenerationText.html');
+    $('#algorithms').load('views/examples/rookyAlgorithmsText.html');
+  })
+</script>

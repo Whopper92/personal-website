@@ -1,0 +1,19 @@
+In this course, three major algorithms were used to provide the real 'brains' of the AI:<br><br>
+<div class='dl-horizontal'>
+  <dt>Negamax</dt>
+    <dd>Simply put, the negamax algorithm provides a simplified way to find the current net score of a particular move from either player's perspective, allowing the AI to look ahead and find good moves. Because move scans are deep, recursive searches, analyzing one move for the white player will also involve the analysis of many black player moves in deeper, future layers.<br>
+    </dd>
+  <div class='col-md-offset-5'>
+    <img class='rookyAlgorithmImg' src='img/tree-1.png'>
+  </div>
+<br>
+  <dt>Iterative Deepening</dd>
+    <dd>In order to prevent a chess AI from scanning moves forever, a time limit is generally enforced, limiting negamax search time to between one and seven seconds, depending on tournament rules. This presents a problem when using the negamax algorithm, as the timer may expire in the middle of the scan of a search level. To ensure the AI has a 'best' answer at any given time, iterative deepening is used to store the latest 'best' move, and a condition is added to the recursive negamax to halt searching should time run out.<br>
+  </dd>
+  <dt>Alpha-Beta Pruning</dt>
+    <dd>The concept behind alpha-beta pruning is rather complicated, but in essence the idea is to sort the first level of moves from best to worst value, traverse several levels down the first path and use the collected score value to determine if subsequent move paths should be searched at all.<br><br>This 'pruning' literally shaves off tens of thousands of unnecessary move node searches in the negamax search tree.
+    </dd>
+  <div class='col-md-offset-5'>
+    <img class='rookyAlgorithmImg' src='img/tree-2.png'>
+  </div>
+</div>
