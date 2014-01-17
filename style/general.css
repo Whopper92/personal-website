@@ -1,13 +1,8 @@
+/* Stylesheet for general elements and classes */
+
+/* Universal elements */
 body {
   background-color: #F0F0F0;
-}
-
-.dropdown-header {
-  margin-left: -10px;
-}
-
-.dropdown {
-  cursor: pointer;
 }
 
 .centerMainContainer {
@@ -17,12 +12,18 @@ body {
   background-color: #FFFFFF;
 }
 
-#mainRow {
-  width: 100%;
+#centerContent {
+  margin-top: 10px;
 }
 
-.page-header {
-  margin-top: 0px;
+#footer {
+  height: 20px;
+  min-height: 20px;
+/*  background-color: #1b1b1b; */
+}
+
+#mainRow {
+  width: 100%;
 }
 
 #mainTitle,
@@ -40,63 +41,22 @@ body {
   margin-top: 5px;
 }
 
-#centerContent {
-  margin-top: 10px;
-}
-
-#footer {
-  height: 20px;
-  min-height: 20px;
-/*  background-color: #1b1b1b; */
-}
-
+/* Home View elements */
 #psuText {
   color: #6A7F10;
 }
 
-#selfImgCaption {
-  margin-top: -15px;
-  margin-left: 15px;
-}
-
-.linkIcons {
-  margin-left: 5px;
-}
-
-.resumeTime {
+/* Resume View Elements */
+.resumeItemYearRange {
   color: gray;
   font-size: 10px;
 }
 
-#resumeLinkedin {
-  margin-left: 5px;
+/* Project View Elements */
+#rookyReflectionTabs {
+  margin-left: 55px;
 }
 
-#rubyText {
+#rubyTitleText {
   color: #9b111e;
-}
-
-#rookyImg1 {
-  height: 400px;
-  width: 700px;
-
-}
-
-#rookyTabs {
-  margin-left: 55px;
-}
-
-.tab-pane {
-  margin-left: 55px;
-}
-
-.negamaxImg {
-  height: 200px;
-  width: 200px;
-}
-
-#social_circle_caption {
-  margin-top: 10px;
-  margin-left: 20px;
-  font-size: 12px;
 }

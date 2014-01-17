@@ -1,0 +1,29 @@
+/* Stylesheet for image related attributes */
+.rookyAlgorithmImg {
+  height: 200px;
+  width: 200px;
+}
+
+.socialIconLink {
+  margin-left: 4px;
+}
+
+#resumeLinkedinLink {
+  margin-top:10px;
+  margin-left: 3px;
+}
+
+#rookyIntroImg {
+  height: 400px;
+  width: 700px;
+}
+
+#selfPortraitCaption {
+  margin-top: -15px;
+  margin-left: 15px;
+}
+
+#socialLinkSectionCaption {
+  margin-top: 10px;
+  font-size: 12px;
+}

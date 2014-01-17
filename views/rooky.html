@@ -4,7 +4,7 @@
     <div id='mainTitle' class='col-md-6'><h1>Rooky</h1></div>
   </div>
   <div class='row'>
-    <div id='secondaryTitle' class='col-md-12'><p class='lead'>A minichess AI written in <span id='rubyText'>Ruby</span>.</p></div>
+    <div id='secondaryTitle' class='col-md-12'><p class='lead'>A minichess AI written in <span id='rubyTitleText'>Ruby</span>.</p></div>
   </div>
 </div>
 
@@ -19,11 +19,11 @@
       </ul>
     </div>
     <div class='col-md-offset-1'>
-      <img id='rookyImg1' src='img/rookyImg1.png'>
+      <img id='rookyIntroImg' src='img/rookyImg1.png'>
     </div>
     <div class='col-md-12'>
       <br><br>
-      <ul id='rookyTabs' class="nav nav-tabs">
+      <ul id='rookyReflectionTabs' class="nav nav-tabs">
         <li class="active"><a href="#language" data-toggle="tab">Choosing a Language</a></li>
         <li><a href="#board" data-toggle="tab">Board representation</a></li>
         <li><a href="#teaching" data-toggle="tab">Teaching the AI</a></li>
@@ -188,14 +188,13 @@
   end
 </pre>
 
-
 </div>
         <div class="tab-pane fade" id="algorithms">In this course, three major algorithms were used to provide the real 'brains' of the AI:<br><br>
           <div class='dl-horizontal'>
             <dt>Negamax</dt>
               <dd>Simply put, the negamax algorithm provides a simplified way to find the current net score of a particular move from either player's perspective, allowing the AI to look ahead and find good moves. Because move scans are deep, recursive searches, analyzing one move for the white player will also involve the analysis of many black player moves in deeper, future layers.<br></dd>
   <div class='col-md-offset-5'>
-    <img class='negamaxImg' src='img/tree-1.png'>
+    <img class='rookyAlgorithmImg' src='img/tree-1.png'>
   </div>
 <br>
             <dt>Iterative Deepening</dd>
@@ -203,9 +202,8 @@
             <dt>Alpha-Beta Pruning</dt>
               <dd>The concept behind alpha-beta pruning is rather complicated, but in essence the idea is to sort the first level of moves from best to worst value, traverse several levels down the first path and use the collected score value to determine if subsequent move paths should be searched at all.<br><br>This 'pruning' literally shaves off tens of thousands of unnecessary move node searches in the negamax search tree.</dd>
   <div class='col-md-offset-5'>
-    <img class='negamaxImg' src='img/tree-2.png'>
+    <img class='rookyAlgorithmImg' src='img/tree-2.png'>
   </div>
-
           </div>
         </div>
       </div>

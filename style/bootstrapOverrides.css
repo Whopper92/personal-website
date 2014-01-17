@@ -1,0 +1,15 @@
+/* Stylesheet for modifications to default bootstrap styles */
+.dropdown-header {
+  margin-left: -10px;
+}
+
+.dropdown {
+  cursor: pointer;
+}
+
+.page-header {
+  margin-top: 0px;
+}
+.tab-pane {
+  margin-left: 55px;
+}
