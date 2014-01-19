@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+<body>
+        <div id='blogEntry' contentEditable='true'>Your content here.</div>
+        <button type="button" id='submit'>Click Me!</button>
+</body>
+</html>
+
+<script type="text/javascript" src="../js/jquery-2.0.3.min.js"></script>
+<script type='text/javascript'>
+$(document).ready(function() {
+
+  $('#submit').on('click', function() {
+    var content = $('#blogEntry').val();
+    console.log(content)
+  })
+
+
+
+})
+</script>

@@ -4,13 +4,13 @@
     <meta charset="utf8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" media="screen" href="style/bootstrap.min.css">
+    <link rel="stylesheet" media="screen" href="style/bootstrapOverrides.css">
+    <link rel="stylesheet" media="screen" href="style/blog.css">
     <link rel="stylesheet" media="screen" href="style/general.css">
     <link rel="stylesheet" media="screen" href="style/images.css">
-    <link rel="stylesheet" media="screen" href="style/bootstrapOverrides.css">
     <title>Will's Home</title>
   </head>
   <body>
-
     <nav class='navbar navbar-default navbar-static-top navbar-inverse' role='navigation'>
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -99,7 +99,7 @@
     $('#buildBoard').on('click', function() { loadPage('buildBoard') })
     $('#sysadminTools').on('click', function() { loadPage('sysadminTools') })
     $('#rooky').on('click', function() { loadPage('rooky') })
-    $('#blogButton').on('click', function() { loadPage('blog') })
+    $('#blogButton').on('click', function() { loadPHP('blog') })
     $('#contactButton').on('click', function() { loadPage('contact') })
 
     function navBarActiveize(divid) {
@@ -115,5 +115,11 @@
       $('.mainContentContainer').html('');
       $('.mainContentContainer').load('views/' + pageid + '.html');
     }
+
+    function loadPHP(pageid) {
+      $('.mainContentContainer').html('');
+      $('.mainContentContainer').load('views/' + pageid + '.php');
+    }
+
   })
 </script>

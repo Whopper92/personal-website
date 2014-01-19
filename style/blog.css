@@ -1,0 +1,62 @@
+/* Styles for blog framework */
+
+#blogNavBar {
+  height: auto;
+  margin-top: 100px;
+  border-right: solid;
+  border-right-width: 5px;
+  border-right-color: #F0F0F0;
+}
+
+.blogNavHeader {
+  margin-left: -10px;
+  padding 3px 20px;
+  font-size: 12px;
+  color: #999;
+}
+
+.blogNavList {
+  margin-top: 5px;
+}
+
+.blogNavListItem {
+  font-size:12px;
+}
+
+.blogNavListDivider {
+  margin-top: 5px;
+  margin-bottom: 3px;
+}
+
+.blogPostTitle {
+  margin-left: 5px;
+  font-family: sans-serif;
+  font-weight: 2000;
+}
+
+.blogPostDate {
+  float: right;
+  font-size: 10px;
+  color: #999;
+}
+
+.blogPostAuthor {
+  margin-top: 0px;
+  margin-left: 50px;
+  font-size: 12px;
+}
+
+.blogPostContent {
+  margin: 20px 0 30px 5px;
+}
+
+.blogPostComments {
+  padding-bottom: 50px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+#blogMainContent {
+  margin-top: 60px;
+  height: auto;
+}
