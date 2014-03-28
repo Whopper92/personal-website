@@ -26,7 +26,7 @@
 
     while ($row = pg_fetch_row($result)) {
       $pageTag = preg_replace( '/\s+/', '', $row[0] );
-      echo "<A NAME='$pageTag'><p class='blogNavListItem'><a href='#$pageTag'>$row[0]</a></p><hr class='blogNavListDivider'>";
+      echo "<A href='$pageTag'><p class='blogNavListItem'><a href='#$pageTag'>$row[0]</a></p><hr class='blogNavListDivider'>";
     }
   }
 
