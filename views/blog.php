@@ -4,7 +4,7 @@
     // Pending better way to do this...
     $host  = 'db.cecs.pdx.edu';
     $user  = 'hopperw';
-    $pass  = 'Namyllib126c!';
+    $pass  = '';
     $db    = 'hopperw';
     $table = 'site_blog_posts';
 
