@@ -1,0 +1,48 @@
+<!-- Upper title bar -->
+<div class='page-header'>
+  <div class='row'>
+    <div id='mainTitle' class='col-md-6'><h1>My Website</h1></div>
+  </div>
+  <div class='row'>
+    <div id='secondaryTitle' class='col-md-12'><p class='lead'>A small website and blog written using standard web technologies.</p></div>
+  </div>
+</div>
+
+<div class='page-content'>
+<!-- Left side bar -->
+  <div class='row'>
+    <div id='mainContent' class='col-md-11'><br>
+      <p>This website is a fairly simply constructed project built simply for the fun of it. Much of the styling is achieved using the <a href='http://getbootstrap.com/'>Bootstrap front-end framework.</a> The blog section utilizes a simple, custom-built PHP based framework sitting on top of a PostgresQL database.</p>
+      <ul>
+        <li><a href='https://github.com/Whopper92/personal-website'>The site </a>on GitHub</li>
+      </ul>
+    </div>
+    <div class='col-md-offset-1'>
+      <img class='projectIntroImg' src='img/personalWebsiteImg1.png'>
+    </div>
+    <div class='row'>
+      <div id='projectDescription' class='col-md-11'>
+        <h2>Technology</h2>
+          <ul>
+            <li><p>The primary technologies used to create this website are HTML, CSS, JavaScript, and PHP. A PostgreSQL database is also utilized to serve content for the blog section.</p></li>
+            <li><p>In order to maintain a visually appealing and consistent look throughout the site, the Bootstrap front-end framework is used to create structure and styling.</p></li>
+            <li><p>The site is hosted through the <a href='http://www.pdx.edu/computer-science/'>Maseeh College of Engineering and Computer Science</a> at Portland State University.</p></li>
+          </ul>
+        <h2>Design</h2>
+          <p class='projectDescParagraph'>In terms of aesthetics, the site is simply intended to look clean and modern. This is mostly accomplished using Bootstrap - particularly the unifying navigation bar.</p>
+          <p class='projectDescParagrah'>Probably the most unique aspect of the implementation of this site is how sections of the site are loaded. I wanted to see if I could create a fluid, single page site that didn't require full page reloads for every piece of content. Instead, I experimented with simply using JavaScript to load HTML into predefined sections of the main page without fetching a new URL. The implementation looks like this:</p>
+<pre> 98     $('#homeButton').on('click', function() { loadPage('home') })
+ 99     $('#resumeButton').on('click', function() { loadPage('resume') })
+100     $('#calendarButton').on('click', function() { loadPage('calendar') })
+</pre>
+          <p class='projectDescParagraph'>Of course, this experimental approach has its share of problems. For one thing, refreshing while looking at any piece of content will result in the home page being loaded again. Also, the blog occasionally takes a few moments to load, leaving a blank page while it does. I'm convinced there is a way to do what I wanted to do, but I don't think this is it. Perhaps a Sinatra or Rails implementation would make it simpler.</p>
+        <h2>Blog</h2>
+          <p class='projectDescParagraph'>Currently, my blog is running on a small PHP framework that I created from scratch to load and display posts from a PostgreSQL database. Though it does work, there are many features that I have not yet gotten around to implementing, and I'm finding that my approach is probably not going to scale terribly well. I am now looking into finding another solution to the issues of handling post archives and doing things other than displaying recent posts.</p>
+        <h2>Considerations</h2>
+          <p class='projectDescParagraph'>In most other circumstances, I would have utilized a Ruby based web framework like <a href='http://www.sinatrarb.com/'>Sinatra</a> to create this site. I quite like the ease and flexibility that such frameworks provide, and Ruby is probably my favorite language to write code in.</p>
+          <p class='projectDescParagraph'>However, because I'm hosting the site on the College's servers, I'm limited in what technologies I can use. All files must be served on a per user basis out of standard home directories, so running a Sinatra app is out of the question.</p>
+          <p class='projectDescParagraph'>This is why I was forced to create a PHP based framework for my blog, where I would have preferred to use Sinatra along with something like <a href='https://sqlite.org/'>SQLite</a>. In fact, as I write this, I realize that a site rewrite using a better framework should probably happen sooner than later!</p>
+      </div>
+    </div>
+  </div>
+</div>
