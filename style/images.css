@@ -4,6 +4,12 @@
   width: 800px;
 }
 
+.projectIntroImgMulti {
+  height: 250px;
+  width: 350px;
+  display: inline-block;
+}
+
 .rookyAlgorithmImg {
   height: 200px;
   width: 200px;
