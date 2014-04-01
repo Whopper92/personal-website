@@ -4,9 +4,9 @@
     // Pending better way to do this...
     $host  = 'db.cecs.pdx.edu';
     $user  = 'hopperw';
-    $pass  = '';
+    $pass  = 'Namyllib126c!';
     $db    = 'hopperw';
-    $table = 'd3survey';
+    $table = 'd3surveytest';
 
     $con = pg_connect("host=$host dbname=$db
             user=$user password=$pass")
@@ -25,7 +25,7 @@
   $game  = $_GET[game];
   $music = $_GET[music];
   $os    = $_GET[os];
-  $submitQuery = "insert into d3survey (name, city, scifi, game, music, os) VALUES ('" .$name. "', '" .$city. "', '" .$scifi. "', '" .$game. "', '" .$music. "', '" .$os. "')";
+  $submitQuery = "insert into d3surveytest (name, city, scifi, game, music, os) VALUES ('" .$name. "', '" .$city. "', '" .$scifi. "', '" .$game. "', '" .$music. "', '" .$os. "')";
 
   connectDB();
   $result = pg_query($submitQuery);
