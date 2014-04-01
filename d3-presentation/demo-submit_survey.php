@@ -4,7 +4,7 @@
     // Pending better way to do this...
     $host  = 'db.cecs.pdx.edu';
     $user  = 'hopperw';
-    $pass  = '';
+    $pass  = 'aPassword';
     $db    = 'hopperw';
     $table = 'd3surveytest';
 
