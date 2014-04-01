@@ -15,24 +15,40 @@
       <p>While studying at Portland State University, I spent a lot of time working and volunteering as a system administrator for the Maseeh College's <a href='http://cat.pdx.edu'>Computer Action Team</a>. During this time, I wrote quite a few tools to help make life easier (of varying usefulness).</p>
       <ul>
         <li><a href='https://github.com/pdxcat/puppet-module-pam'>Puppet Module Pam</a> on Github</li>
-        <li><a href='https://github.com/Whopper92/puppetlabs-rpmbuilder'>Puppet Module RPM Builder</a> on Github</li>
+        <li><a href='https://github.com/puppetlabs/puppetlabs-rpmbuilder'>Puppet Module RPM Builder</a> on Github</li>
         <li><a href='https://github.com/Whopper92/CATStuff/tree/master/RunawayScript'>Linux runaway script</a> on Github</li>
       </ul>
     </div><br><br><br><br>
+
     <div class='col-md-11'>
       <h3>Puppet Modules</h3>
         <div class='row'>
           <div class='col-md-offset-1'>
             <img class='projectIntroImgMulti' src='img/puppetPAMImg1.png'>
-            <img class='projectIntroImgMulti' src='img/puppetRPMImg1.png'>
+            <img class='projectIntroImgMulti' src='img/puppetRPMImg1.png'><br><br>
+            <h4>Puppet Module PAM</h4>
+            <p>Configuration management played a huge role in shaping how I learned to be a sysadmin in the CAT. Specifically, we used Puppet to managage just about every aspect of the College's hundreds of Unix workstations and servers.</p>
+            <p>One of my first Puppet-based assignments was to create a module to manage a few of PAM's security files in Debian based systems. The file 'access.conf' controls which users are allowed to remotely login to a given machine, while 'limits.conf' can be used to define a variety a system limits such as maximum simultaneous user logins.</p>
+            <p>To most conveniently manage these files across many machines with varying configurations, I opted to utilize the Concat Puppet module to easily piece together the files dynamically on a machine by machine basis. No more static files sitting in the files/ directory of the Puppet module. Concat allowed us to simply use a parameterized class to set our definitions and carry on.</p>
+            <p>This module also holds a special place in my heart due to the fact that it was the first module that I wrote from scratch and published to the <a href='https://forge.puppetlabs.com/pdxcat/pam'>Puppet Forge</a>. Currently, it is the second most downloaded PAM module present!</p><br>
+
+            <h4>Puppet Module RPM Builder</h4>
+            <p>During my first internship with Puppet Labs, I worked with the release engineering team. One of my projects was to help automate the creation of a server with the purpose of building RPM packages for Puppet's various products. This would allow a release engineer to quickly fire up a VM and convert it into a machine capable of building RPM's just like our real steel RPM builder did.<p>
+            <p>The module itself uses a set of parameters to handle the creation of any number of arbitrary mock configurations, as well as installing all of the needed build tools to create packages.</p>
           </div>
         </div>
     </div>
     <div class='col-md-11'>
+      <br>
       <h3>Linux Remote Runaway Process Finder</h3>
-        <div class='col-md-offset-1'>
-          <img class='projectIntroImg' src='img/runawayScriptImg1.png'>
-        </div>
+      <img class='projectIntroImg' src='img/runawayScriptImg1.png'>
+        <div class='col-md-offset-1' id='projRunawayText'>
+          <h4>runawaycheck.py</h4>
+          <p>One of the common problems faced by sysadmins in the College of Engineering was the threat of students accidentally (or intentionally) creating runaway processes on one of the Unix machines, possibly causing a forkbomb or otherwise running the machine into the ground.</p>
+          <p>The solution to this was to have volunteers learn to write simple scripts to monitor every Unix machine for potentially nasty surprises. Because many of the volunteers are fairly new to Linux, it can be quite a challenge and is an excellent learning experience.</p>
+          <p>My runaway process finder went through many iterations before it ended up as it is now. It was originally written in Bash and was probably quite ugly, but got the job done. The most recent implementation is done in Python, and utilizes Python packages to try and abstract some of the logic out and make the code flow more clearly.</p>
+          <p>In essense, the script simply remotely logs in to a predefined list of servers stored in a file and parses the output of a specially formatted `ps` command, looking for high CPU or memory usage. If such a process is found, a notification is sent to the user of the script. Load average is also monitored, which came in handy quite a few times as various servers chugged along with a load of 20 or more.</p>
+      </div>
     </div>
   </div>
 </div>
