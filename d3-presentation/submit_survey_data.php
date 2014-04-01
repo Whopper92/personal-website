@@ -1,13 +1,6 @@
 <?php
-
   function connectDB() {
-    // Pending better way to do this...
-    $host  = 'db.cecs.pdx.edu';
-    $user  = 'hopperw';
-    $pass  = '';
-    $db    = 'hopperw';
-    $table = 'd3surveytest';
-
+    include("../.db_cred.php");
     $con = pg_connect("host=$host dbname=$db
             user=$user password=$pass")
             or die ("Could not connect to server\n");
@@ -18,13 +11,13 @@
     pg_close($connection);
   }
 
-
   $name  = $_GET[name];
   $city  = $_GET[city];
   $scifi = $_GET[scifi];
   $game  = $_GET[game];
   $music = $_GET[music];
   $os    = $_GET[os];
+
   $submitQuery = "insert into d3surveytest (name, city, scifi, game, music, os) VALUES ('" .$name. "', '" .$city. "', '" .$scifi. "', '" .$game. "', '" .$music. "', '" .$os. "')";
 
   connectDB();

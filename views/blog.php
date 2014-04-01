@@ -1,13 +1,7 @@
 <?php
-
   function connectBlogDB() {
+    include("../.db_cred.php");
     // Pending better way to do this...
-    $host  = 'db.cecs.pdx.edu';
-    $user  = 'hopperw';
-    $pass  = '';
-    $db    = 'hopperw';
-    $table = 'site_blog_posts';
-
     $con = pg_connect("host=$host dbname=$db
             user=$user password=$pass")
             or die ("Could not connect to server\n");
