@@ -87,6 +87,10 @@ body {
   margin-left: 40px;
 }
 
+.readPostButton {
+  margin-left: 40px;
+}
+
 #blogSideBar {
   border-left-style: solid;
   border-width: 3px;
