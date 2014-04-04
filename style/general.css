@@ -77,3 +77,18 @@ body {
 #barcampText {
   color: #d85a1a;
 }
+
+/* Blog Elements */
+.blogParagraph {
+  text-indent: 30px;
+}
+
+.blogPostPreview {
+  margin-left: 40px;
+}
+
+#blogSideBar {
+  border-left-style: solid;
+  border-width: 3px;
+  border-color: #C8C8C8;
+}
