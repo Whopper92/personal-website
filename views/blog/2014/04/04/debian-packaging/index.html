@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Will's Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A Personal Blog">
+
+    <script src="../../../../../../js/jquery-2.1.0.min.js"></script>
+    <script src="../../../../../../js/bootstrap.min.js"></script>
+    <link href="../../../../../../style/bootstrap.css" rel="stylesheet">
+    <link href="../../../../../../style/general.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <nav class='navbar navbar-default navbar-static-top navbar-inverse' role='navigation'>
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://willhopper.com">Will Hopper</a>
+      </div>
+
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="http://willhopper.com/views/blog/blog.html">Blog Home</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+
+
+<div class="row">
+    <div class="col-md-8">
+
+<h2>Throwback: Intro to Debian Packaging</h2>
+<h5>This post was originally written on April 17, 2012</h5>
+<br>
+
+<p class='blogParagraph'>Learning how Debian packaging works has been something that I've meant to do for some time now. The event that finally got me thinking about it again was a recent Ubuntu Jam at FreeGeek, in which programs like debhelper were discussed in the main presentation. The following dump of information is my effort to document all of my research and experience into a digestible format from which can be easily referenced in the future.</p><br>
+
+<h4>Naming Conventions</h4>
+<p class='blogParagraph'>The way you name your package is very significant, especially if it is to be released publicly in any way. The general format to follow looks like this:</p>
+
+<pre>packagename_version_arch.deb</pre><br>
+
+<ul>
+  <li><u><b>Packagename:</b></u> The name of the package.</li>
+  <li><u><b>Version:</b></u> The package number with major, minor and revision numbers.</li>
+  <li><u><b>arch:</b></u> The architecture that the package supports.</li>
+</ul><br>
+
+<h4>Components of a Debian archive file</h4>
+<p class='blogParagraph'>This is a very rough outline of the things that live in Debian archives. Each of these likely are compressed in separate tar archives.</p>
+
+<ul>
+  <li>Control section</li>
+  <li>Filesystem structure</li>
+</ul><br>
+
+<h5>The Control Section</h5>
+<p class='blogParagraph'>The "Control Section" is the general term used for the section of the .deb that acts as the 'brains' of the operation. Here, information for configuration is stored and carried out by dpkg. Central to this section is the control file. The control file specifies package parameters and other information. There are many fields, not all of which are required. A simple control file for our package might look like this:</p>
+
+<pre>
+    Package: runawaylocator
+    Version: 1.0
+    Section: Administration Utilities
+    Architecture: all
+    Essential: no
+    Depends: python (>= 2.6)
+    Maintainer: Will Hopper [whopper@cat.pdx.edu]
+    Provides: runawaylocator
+    Description: Runaway Locator scans a newwork of any number
+                 of nodes to locate potential runaway processes.
+</pre><br>
+
+<h5>Fields of the Control File</h5>
+<ul>
+  <li><u><b>Package:</b></u> The name of the package</li>
+  <li><u><b>Version:</b></u> Version number of the package</li>
+  <li><u><b>Section:</b></u> The application area in which this package should be classified.</li>
+  <li><u><b>Maintainer:</b></u> Full name of person or company maintaining the package.</li>
+  <li><u><b>Dependencies:</b></u>
+    <ul>
+      <li><u><b>Depends:</b></u> The names of any packages that this package *needs* to function.</li>
+      <li><u><b>Recommends / Suggests:</b></u> Any packages that may increase functionality of this package, but are not required for functioning.</li>
+      <li><u><b>Enhances:</b></u> This package may make another package more useful with its own functionality.</li>
+      <li><u><b>Pre-Depends:</b></u> Make sure these named packages are completely installed before the attempted installation of this package.</li>
+    </ul>
+  </li>
+  <li><u><b>Conflicts:</b></u>
+    <ul>
+      <li><u><b>Conflict:</b></u> Specified package cannot exist on the system with this package.</li>
+      <li><u><b>Replaces:</b></u> Specified package will be replaced by this package.</li>
+    </ul>
+  </li>
+</ul>
+
+<p class='blogParagraph'>Note: Relative values are specified as follows:</p>
+<pre>
+   << : Strictly earlier than
+   <= : Earlier than or equal to
+   =  : Strictly equal to
+   >= : Equal to or later than
+   >> : Strictly later than
+</pre><br>
+
+<h5>Scripts</h5>
+<p class='blogParagraph'>Scripts embedded in Debian packages are responsible for executing necessary functions before and after the package is installed. There are several types of these scripts:</p>
+
+<ul>
+  <li><u><b>Preinst:</b></u> Executes before the unpacking of files from the Debian archive. Often, these scripts stop services for packages that are being upgraded until installation is complete.</li>
+  <li><u><b>Postinst:</b></u> Executes after the unpacking of files from the archive. Here, user input is often gathered to configure the package. They also commonly start the service provided by the package.</li>
+  <li><u><b>Prerm:</b></u> Stops services and daemons associated with a package before its files are removed.</li>
+  <li><u><b>Postrm:</b></u> These scripts often remove symbolic links created by installation scripts, and files created by the package.</li>
+</ul><br>
+
+<h4>Finally, The structure of a Debian package through a simple example</h4>
+<p class='blogParagraph'>The following is an example of a package containing a small python script, which includes the core executable to be run by the user, as well as supporting 'libraries' used by this core script. No pre or post installation scripts are necessary in this case, nor are any removal scripts.</p>
+
+<pre>
+./runawaylocator_1.0.0_i386.deb
+      
+                                ./DEBIAN
+                                       ./control
+                                ./usr
+                                    ./bin
+                                        ./runawaylocator
+                                    ./lib
+                                        ./python2.6
+                                                 ./sshanalyze.py
+                                                 ./sshcmds.py
+</pre>
+
+<p class='blogParagraph'>With this directory structure built, the next step is to build the .deb:</p>
+
+<pre>dpkg -b runawaylocator_1.0.0_i386.deb</pre>
+
+<p class='blogParagraph'>This will create our package, just like that! Installing this package with the following command:</p>
+
+<pre>dpkg -i runawaylocator_1.0.0_i386.deb</pre>
+
+<p class='blogParagraph'>... will install each of the files into the appropriate diretories, just as expected. Once installed, the package behaves just as any other. Thanks to our control file, we can gather info about the install in the usual way:</p>
+
+<pre>
+$ dpkg -l runawaylocator
+
+||/ Name           Version        Description
++++-==============-==============-================================================
+ii  runawaylocator 1.0            Runaway Locator scans a network of any number...
+</pre>
+
+<p class='blogParagraph'>Uninstalling the package is also very simple:</p>
+
+<pre>$ dpkg -r runawaylocator</pre>
+
+<p class='blogParagraph'>Now, all of the extracted files will be removed from our system, just as expected.
+</p>
+<p class='blogParagraph'>In summary, the process of creating Debian packages in its most basic form is really quite simple. However, just about any level of control over the behavior of the package can be controlled through each of the control scripts mentioned above.</p>
+
+    </div>
+    <div id='blogSideBar' class="col-md-4">
+      <div class="row">
+    <div class="col-md-12">
+<div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'willshome'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" >Get Article Link</button>
+        </ul>
+    </div>
+</div>
+
+    </div>
+</div>
+
+    </div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Direct Article Link</h4>
+      </div>
+      <div class="modal-body">
+        <script>document.write(window.location.href) </script>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br>
+  </body>
+</html>
+
+
