@@ -18,6 +18,11 @@
   margin-left: 4px;
 }
 
+#socialCircleTwitter {
+  height: 60px;
+  width: 60px;
+}
+
 #resumeLinkedinLink {
   margin-top:10px;
   margin-left: 3px;
