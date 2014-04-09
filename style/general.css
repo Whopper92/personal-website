@@ -80,7 +80,9 @@ body {
 
 /* Blog Elements */
 .blogParagraph {
-  text-indent: 30px;
+  text-indent: 0px;
+  padding-top:3px;
+  padding-bottom: 7px;
 }
 
 .blogPostPreview {
