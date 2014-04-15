@@ -9,6 +9,8 @@
 
     <script src="../../../../../../js/jquery-2.1.0.min.js"></script>
     <script src="../../../../../../js/bootstrap.min.js"></script>
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+
     <link href="../../../../../../style/bootstrap.css" rel="stylesheet">
     <link href="../../../../../../style/general.css" rel="stylesheet">
   </head>
@@ -39,8 +41,214 @@
 
 <h2>DejaGnu with Autotools, Gcov and Lcov: A Tutorial</h2>
 
-<p class='blogParagraph'>Tutorial coming soon!</p>
+<p class='blogParagraph'>The following is a plain and simple, no nonsense guide on how to quickly get a test suite up and running for any project using DejaGnu and related tools. For the purposes of this tutorial I will assume you already know what DejaGnu is, at least in a vague sense. If not, read up on it <a href='http://www.gnu.org/software/dejagnu/'>here</a>!</p>
 
+<p class='blogParagraph'>I'll also be going over the usage of Gcov and Lcov along with DejaGnu tests. These are cool, fairly simple tools that can really help analyze test coverage. See <a href='http://gcc.gnu.org/onlinedocs/gcc/Gcov.html'>Gcov</a> and <a href='http://ltp.sourceforge.net/coverage/lcov.php'>Lcov</a> for more information.
+<p class='blogParagraph'></p>
+
+<h2>Onward! Let's Get Setup!</h2>
+
+<p class='blogParagraph'>Now, obviously we are going to need some sort of project to test in order to get the most out of DejaGnu. This guide will use an incredibly simple C program to best illustrate the finer features of the tool. Check it out below:</p>
+
+<pre class='prettyprint'>
+#include &ltstdio.h&gt
+
+main(int argc, char *argv[]) {
+  if(argc != 3) {
+    printf( "Usage: %s int1 int2\n", argv[0] );
+  } else {
+    printf ( "%d\n", atoi(argv[1]) + atoi(argv[2]) );
+  }
+}
+</pre><br>
+
+<p class='blogParagraph'>All we're doing here is adding the two command line arguments provided and printing the result. Note that I'm too lazy to do any error checking on the inputs, but that really doesn't matter for our purposes.</p>
+
+<p class='blogParagraph'>We'll set this code in a file called '<b>add.c</b>' inside of a directory named '<b>add</b>'. All of the files we create from now on should also end up in this directory.</p>
+
+<p class='blogParagraph'>We'll also need the tests themselves! Create a directory alled '<b>test</b>', and inside of that another directory called '<b>add</b>'. This is where we will store all of our Expect tests. For this tiny program, go ahead and insert the following tests into a file called '<b>test-add.exp</b>' inside of the new directory:</p>
+
+<pre class='prettyprint'>
+set tool "add"
+set exp_internal 1
+set testdata {
+  {"1 1"   "2" }
+  {""      "Usage: ./add int1 int2" }
+}
+
+global ADD
+foreach pattern $testdata {
+    set inputs [lindex $pattern 0]
+    eval "spawn $ADD $inputs"
+    expect {
+        -re [lindex $pattern 1] {
+            pass $inputs
+        }
+        default { fail $inputs }
+    }
+}
+</pre><br>
+
+<h2>Preparing to use Autotools</h2>
+
+<p class='blogParagraph'>For a C project like this, it's quite helpful to automatically generate Makefiles and such to help automatically run test suites. The intricacies of Autotools are out of the scope of this guide, so I'll simply be demonstrating which files you'll need to get going.</p>
+
+<h3>configure.ac</h3>
+<p class='blogParagraph'>First of all, let's prepare our Autotool configuration. Open up a new file called '<b>configure.ac</b>' and add the following:</p>
+
+<pre class='prettyprint'>
+AC_PREREQ(2.5)
+AC_INIT(add.c)
+AM_CONFIG_HEADER(config.h)
+AM_INIT_AUTOMAKE(libsort,0.0.1)
+AC_PROG_CC
+AC_OUTPUT(Makefile)
+</pre>
+
+<p class='blogParagraph'>The only thing we really had to setup here was the AC_INIT option, which should be changed to the entry source file for our program. The rest of the options should be universal for other projects.</p>
+
+<h3>Makefile.am</h3>
+
+<p class='blogParagraph'>Next, we'll need to configure our soon to be Makefile. Open another new file named '<b>Makefile.am</b>' and insert the following:</p>
+
+<pre class='prettyprint'>
+AUTOMAKE_OPTIONS= dejagnu
+
+bin_PROGRAMS = add
+add_SOURCES = add.c
+AM_CPPFLAGS =
+CLEANFILES = *~
+DISTCLEANFILES = .deps/*.P
+EXTRA_DIST= test
+AM_CFLAGS= --coverage
+
+RUNTESTDEFAULTFLAGS = --tool add ADD=`pwd`/add --srcdir $$srcdir/test
+</pre>
+
+<p class='blogParagraph'>Notice that we've set the properties <b>bin_PROGRAMS</b>, <b>add_SOURCES</b> and <b>RUNTESTDEFAULTFLAGS</b> to use our add program. Obviously, these will need to be changed depending on the name of the project and the source code files involved.</p>
+
+<h3>autogen.sh</h3>
+
+<p class='blogParagraph'>Finally, we're going to add a small shell script to the project which will handle the auto generation of all of the stuff we need. Make a new file called '<b>autogen.sh</b>' and add the following:</p>
+
+<pre class='prettyprint'>
+ #!/bin/sh
+    autoreconf --force --install -I config -I m4
+</pre>
+
+<p class='blogParagraph'>Excellent! Now we're almost ready to begin! Before we can run our autogen script, we'll need to create a few directories and files for Automake. If we don't it will scream at us and fail. Run the following command:</p>
+
+<pre class='prettyprint'>
+will add&gt mkdir config m4 && touch NEWS README AUTHORS ChangeLog
+</pre>
+
+<p class='blogParagraph'>With this done, go ahead and run your autogen.sh script. You may need to make it executable if you haven't already.</p>
+
+<pre class='prettyprint'>
+will add &gt chmod +x autogen.sh && ./autogen.sh
+</pre>
+
+<p class='blogParagraph'>You should now see quite a few additional files in your project directory, sort of like this:</p>
+
+<pre class='prettyprint'>
+will add&gt ls
+
+aclocal.m4  autogen.sh      config        configure     depcomp     m4           missing
+add.c       autom4te.cache  config.h.in   configure.ac  INSTALL     Makefile.am  NEWS
+AUTHORS     ChangeLog       config.h.in~  COPYING       install-sh  Makefile.in  README
+</pre><br>
+
+<h2>Compiling and Running Tests</h2>
+
+<p class='blogParagraph'>If all looks well, go ahead and run the automatically generated <b>configure</b> script, and then run <b>make</b>:</p>
+
+<pre class='prettyprint'>
+will add&gt ./configure
+will add&gt make
+</pre>
+
+<p class='blogParagraph'>This will compile the program with the --coverage flag - something which will become important when we start using Gcov.</p>
+
+<p class='blogParagraph'>With the program compiled, we can now run our fancy tests that we added to the <b>./test/add</b> directory earlier. Simply run:</p>
+
+<pre class='prettyprint'>
+will add&gt make check
+
+Test Run By will on Tue Apr 15 20:47:30 2014
+Native configuration is x86_64-unknown-linux-gnu
+
+    === add tests ===
+
+Schedule of variations:
+    unix
+
+Running target unix
+Using /usr/share/dejagnu/baseboards/unix.exp as board description file for target.
+Using /usr/share/dejagnu/config/unix.exp as generic interface file for target.
+WARNING: Couldn't find tool config file for unix, using default.
+Running ./test/add/test-add.exp ...
+
+    === add Summary ===
+
+# of expected passes    2
+</pre>
+
+<p class='blogParagraph'>... And just like that, DejaGnu will run all of our tests and tell us which pass and which fail! It's magic!</p><br>
+
+<h2>Checking coverage with Gcov</h2>
+
+<p class='blogParagraph'>Luckily, getting Gcov to work with our tests is quite easy. In fact, we've already done most of the work by adding the --coverage flag to our Makefile! After you've run your tests, just run the following command to get coverage stats for the program:</p>
+
+<pre class='prettyprint'>
+will add&gt gcov add.c
+
+File 'add.c'
+Lines executed:100.00% of 4
+Creating 'add.c.gcov'
+
+File '/usr/include/x86_64-linux-gnu/bits/stdio2.h'
+Lines executed:100.00% of 1
+Creating 'stdio2.h.gcov'
+</pre>
+
+<p class='blogParagraph'>A summary of all tests can be found in the automatically generated '<b>add.sum</b>' file, while a log of Gcov's output can be found in '<b>add.log</b>'</p><br>
+
+<h2>Viewing Prettier Stats with Lcov</h2>
+
+<p class='blogParagraph'>The last step to properly viewing test coverage is to run Gcov's data through Lcov, which simply generates nice HTML files to show us the numbers. We only need to run two commands to get the goods:</p>
+
+<pre class='prettyprint'>
+will add&gt lcov -t 'add' -o coverage.info -c -d . && genhtml -o lcov coverage.info
+
+Capturing coverage data from .
+Found gcov version: 4.8.1
+Scanning . for .gcda files ...
+Found 1 data files in .
+Processing add.gcda
+Finished .info-file creation
+
+Reading data file coverage.info
+Found 2 entries.
+Found common filename prefix "/home/ubuntu/PortlandState/spring2014/softwareTesting/project1"
+Writing .css and .png files.
+Generating output.
+Processing file project/blog/add.c
+Processing file /usr/include/x86_64-linux-gnu/bits/stdio2.h
+Writing directory view page.
+Overall coverage rate:
+  lines......: 100.0% (5 of 5 lines)
+  functions..: 100.0% (1 of 1 function)
+  branches...: 50.0% (1 of 2 branches)
+</pre>
+
+<p class='blogParagraph'>Note that Lcov sometimes complains about an unexpected end of file in the Gcov output. If you encounter this, simply run <b>`make clean && make`</b>, delete all of the <b>add.gc*</b> files, and re-run your tests. You should then be able to propery run Lcov as above.</p>
+
+<p class='blogParagraph'>Finally, after all of this hard work, we can see the fruits of our labor. In the newly generated <b>lcov</b> directory, you will find a bunch of HTML, CSS and images. You'll need to serve this directory up on a webserver, and you'll then be able to navigate to it and see something like the following:</p>
+
+<img class='img-responsive' src='../../../../img/lcov.png' alt="Lcov HTML">
+
+<h2>Now, go forth and test!</h2>
+<p class='blogParagraph'>That's it! We're done! I hope this guide was helpful in figuring out the very basics of DejaGnu, Gcov and Lcov!<br><br>
     </div>
     <div id='blogSideBar' class="col-md-4">
       <div class="row">

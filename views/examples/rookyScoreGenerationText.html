@@ -1,5 +1,6 @@
 The previously mentioned scoring algorithm is actually rather simple. Each piece type is assigned a static value. A pawn, for example, may be worth 100 points. The current player may then find a move in which they capture an enemy pawn, which would increase the net score in their favor by 100 points.<br><br>Though effective enough to get an AI playing the game, this scoring system is not enough on its own. Other rules must be hardcoded in as well in order to elevate the 'strategy' of the AI, particularly in the early game. To do this, score values can be adjusted based on board location as well as piece type. One may provide incentive for the AI to move out its pawns early in the match by increasing the point value for movement of pawns out of starting positions.<br><br>
-<pre>  def scoreGen(aState, color)
+<pre class='prettyprint'>
+def scoreGen(aState, color)
   # Returns the score of a state the will exist if the given move is executed.
   # The score value is the score of the state that the opponent will receive,
   # so the lower the number the 'better' for the side onMove

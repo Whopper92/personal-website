@@ -1,5 +1,5 @@
 In implementations of game AI's for zero-sum games such as chess, the computer is actually quite dumb. In order to determine which moves are 'good,' the program scans through every possible, legal move. Using a hardcoded scoring system, each move is assigned a net score which can be compared with all of the other moves.<br><br>The AI then must have the ability to see several moves into the future, or it may capture a pawn with a queen, only to have its queen captured next turn. A efficient chess program written in something like C should be able to scan several million moves in one second. That means the AI is actually seeing six to seven moves into the future, recursively judging which immediate move will lead to the greatest net gain in score.<br><br>
-<pre>
+<pre class='prettyprint'>
   def moveScan(x0, y0, dx, dy, stopShort, capture, aState)
   # This method is called many times by the moveList method,
   # which passes in every combination of movement directions for

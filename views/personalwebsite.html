@@ -1,3 +1,4 @@
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
 <!-- Upper title bar -->
 <div class='page-header'>
   <div class='row'>
@@ -31,9 +32,10 @@
         <h2>Design</h2>
           <p class='projectDescParagraph'>In terms of aesthetics, the site is simply intended to look clean and modern. This is mostly accomplished using Bootstrap - particularly the unifying navigation bar.</p>
           <p class='projectDescParagrah'>Probably the most unique aspect of the implementation of this site is how sections of the site are loaded. I wanted to see if I could create a fluid, single page site that didn't require full page reloads for every piece of content. Instead, I experimented with simply using JavaScript to load HTML into predefined sections of the main page without fetching a new URL. The implementation looks like this:</p>
-<pre> 98     $('#homeButton').on('click', function() { loadPage('home') })
- 99     $('#resumeButton').on('click', function() { loadPage('resume') })
-100     $('#calendarButton').on('click', function() { loadPage('calendar') })
+<pre class='prettyprint'>
+98     $('#homeButton').on('click', function() { loadPage('home') })
+99     $('#resumeButton').on('click', function() { loadPage('resume') })
+100    $('#calendarButton').on('click', function() { loadPage('calendar') })
 </pre>
           <p class='projectDescParagraph'>Of course, this experimental approach has its share of problems. For one thing, refreshing while looking at any piece of content will result in the home page being loaded again. Also, the blog occasionally takes a few moments to load, leaving a blank page while it does. I'm convinced there is a way to do what I wanted to do, but I don't think this is it. Perhaps a Sinatra or Rails implementation would make it simpler.</p>
         <h2>Blog</h2>
