@@ -23,6 +23,12 @@
   width: 60px;
 }
 
+#socialCircleGoogle {
+  margin-left: -2px;
+  height: 65px;
+  width: 65px;
+}
+
 #resumeLinkedinLink {
   margin-top:10px;
   margin-left: 3px;
