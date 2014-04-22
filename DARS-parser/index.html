@@ -44,7 +44,7 @@
       <div id='reportFileContainer' class='col-md-6'>
         <textarea id='reportInput' rows='5' cols='100'></textarea>
         <p class="help-block">Run a DARS report and click 'Save printer friendly version.' Then, simply copy the full text and paste it here!</p>
-        <button type="submit" class="btn btn-primary" onClick='getCSData();'>Submit</button>
+        <button type="submit" class="btn btn-primary" onClick='parseReport();'>Submit</button>
       </div>
     </div>
 
@@ -104,13 +104,13 @@
         </div>
 
 
-        <div id='genEdColumn' class="col-md-4">
-          <h4>General Education Requirements</h4>
+        <div id='genReqColumn' class="col-md-4">
+          <h4>General Requirements</h4>
         </div>
 
 
-        <div id='majorColumn' class='col-md-4'>
-          <h4>Major Requirements</h4>
+        <div id='subReqColumn' class='col-md-4'>
+          <h4>Sub-Requirements</h4>
         </div>
       </div>
     </div>

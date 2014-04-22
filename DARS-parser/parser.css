@@ -23,6 +23,11 @@ th {
   background-color: #980000;
 }
 
+.inProgress {
+  background-color: #E6E65C;
+  color: black;
+}
+
 .complete {
   background-color: #006600;
 }
