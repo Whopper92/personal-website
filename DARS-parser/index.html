@@ -7,8 +7,13 @@
     <meta name="description" content="App to parse a DARS report into a more human reable format">
     <meta name="author" content="Will Hopper">
 
+    <script src='../js/jquery-2.1.0.min.js' type='text/javascript'></script>
+    <script src='../js/jquery.qtip.min.js' type='text/javascript'></script>
+    <script src='../js/bootstrap.js' type='text/javascript'></script>
     <script src='parser.js' type='text/javascript'></script>
-    <link href="../../style/bootstrap.css" rel="stylesheet">
+
+    <link href="../style/bootstrap.css" rel="stylesheet">
+    <link href="../style/jquery.qtip.min.css" rel="stylesheet">
     <link href="parser.css" rel="stylesheet">
   </head>
 
@@ -93,20 +98,18 @@
               </tr>
               <tr>
                 <td class='leftColCell'><b>Cumulative</b></td>
-                <td id='cumuGpaCell'></td>
+                <td id='cumuGpaCell' title='Minimum Cumulative GPA: 2.00'></td>
               </tr>
               <tr>
                 <td class='leftColCell'><b>Major</b></td>
-                <td id='majorGpaCell'></td>
+                <td id='majorGpaCell' title='Minimum Major GPA: 2.00'></td>
             </table>
           </div>
         </div>
 
-
         <div id='genReqColumn' class="col-md-4">
           <h4>General Requirements</h4>
         </div>
-
 
         <div id='subReqColumn' class='col-md-4'>
           <h4>Sub-Requirements</h4>
@@ -124,5 +127,4 @@
 
   ga('create', 'UA-50028935-2', 'willhopper.com');
   ga('send', 'pageview');
-
 </script>

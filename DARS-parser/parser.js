@@ -73,14 +73,17 @@ function parseReport() {
     if(entry.substring(0,2) == 'OK') {
       var rectClasses = 'dataRect alert alert-success';
       var iconClass   = 'glyphicon glyphicon-ok';
+      var tipMsg      = 'Requirement Completed!';
     } else if(entry.substring(0,2) == 'IP') {
       var rectClasses = 'dataRect alert alert-warning';
       var iconClass   = 'glyphicon glyphicon-refresh';
+      var tipMsg      = 'Requirement In Progress';
     } else {
       var rectClasses = 'dataRect alert alert-danger';
       var iconClass   = 'glyphicon glyphicon-remove';
+      var tipMsg      = 'Requirement Not Completed';
     }
-    genReqCol.insertAdjacentHTML('beforeend', '<div class="' + rectClasses + '">' + entry.substring(2) + '<span class="' + iconClass + ' statusIcon"></span></div>');
+    genReqCol.insertAdjacentHTML('beforeend', '<div class="' + rectClasses + '" title="' + tipMsg + '">' + entry.substring(2) + '<span class="' + iconClass + ' statusIcon"></span></div>');
   });
 
 // Visualize the sub requirements column
@@ -88,10 +91,23 @@ function parseReport() {
      if(entry.substring(0,1) == '+') {
        var rectClasses = 'dataRect alert alert-success';
        var iconClass   = 'glyphicon glyphicon-ok';
+       var tipMsg      = 'Requirement Completed!';
      } else {
        var rectClasses = 'dataRect alert alert-danger';
        var iconClass   = 'glyphicon glyphicon-remove';
+       var tipMsg      = 'Requirement Not Completed';
      }
-     subReqCol.insertAdjacentHTML('beforeend', '<div class="' + rectClasses + '">' + entry.substring(5) + '<span class="' + iconClass + ' statusIcon"></span></div>');
+     subReqCol.insertAdjacentHTML('beforeend', '<div class="' + rectClasses + '" title="' + tipMsg + '">' + entry.substring(5) + '<span class="' + iconClass + ' statusIcon"></span></div>');
    });
+
+// Enable tooltips
+  enableTooltips();
+}
+
+function enableTooltips() {
+  $('[title]').qtip({
+    style: { classes: 'qtip-light tooltip' },
+    position: { my: 'top right', at: 'top left' },
+    content: { title: 'Status' }
+  });
 }
