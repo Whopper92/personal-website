@@ -37,14 +37,10 @@
     </div>
 
     <div id='reportInputContainer' class='row'>
-      <div class='stepNumber col-md-2 col-md-offset-1'>
-        <h2 id='reportInputHeader'>1</h2>
-        <p>Upload a report!</p>
-      </div>
-      <div id='reportFileContainer' class='col-md-6'>
+      <div id='reportFileContainer' class='col-md-6 col-md-offset-3'>
         <textarea id='reportInput' rows='5' cols='100'></textarea>
-        <p class="help-block">Run a DARS report and click 'Save printer friendly version.' Then, simply copy the full text and paste it here!</p>
-        <button type="submit" class="btn btn-primary" onClick='parseReport();'>Submit</button>
+        <p class="help-block">Run a DARS report and click <b>Save printer friendly version.</b> Then, simply paste the full text here!</p>
+        <button id='submitBtn' type="submit" class="btn btn-primary" onClick='parseReport();'>Parse!</button>
       </div>
     </div>
 
@@ -53,22 +49,22 @@
       <div class="row">
         <div id='creditColumn' class="col-md-4">
           <div class='col-md-11 col-md-offset-1'>
-            <h4>Credit Totals</h4>
+            <h4>Credits and GPA</h4>
             <table class="table">
               <tr>
                 <th>Overall</th>
                 <th>Credits</th>
               </tr>
               <tr>
-                <td><b>Earned</b></td>
+                <td class='leftColCell'><b>Earned</b></td>
                 <td id='credTotalEarnedCell'></td>
               </tr>
               <tr>
-                <td><b>In Progress</b></td>
+                <td class='leftColCell'><b>In Progress</b></td>
                 <td id='credTotalInProgCell'></td>
               </tr>
               <tr>
-                <td><b>Needed</b></td>
+                <td class='leftColCell'><b>Needed</b></td>
                 <td id='credTotalNeededCell'></td>
               </tr>
             </table><br>
@@ -78,26 +74,29 @@
                 <th>Credits</th>
               </tr>
               <tr>
-                <td><b>Earned</b></td>
+                <td class='leftColCell'><b>Earned</b></td>
                 <td id='credUpEarnedCell'></td>
               </tr>
               <tr>
-                <td><b>In Progress</b></td>
+                <td class='leftColCell'><b>In Progress</b></td>
                 <td id='credUpInProgCell'></td>
               </tr>
               <tr>
-                <td><b>Needed</b></td>
+                <td class='leftColCell'><b>Needed</b></td>
                 <td id='credUpNeededCell'></td>
               </tr>
             </table>
-            <h4>GPA</h4>
             <table class='table'>
               <tr>
-                <td><b>Cumulative</b></td>
+                <th>GPA</th>
+                <th></th>
+              </tr>
+              <tr>
+                <td class='leftColCell'><b>Cumulative</b></td>
                 <td id='cumuGpaCell'></td>
               </tr>
               <tr>
-                <td><b>Major</b></td>
+                <td class='leftColCell'><b>Major</b></td>
                 <td id='majorGpaCell'></td>
             </table>
           </div>

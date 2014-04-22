@@ -36,7 +36,6 @@ function parseReport() {
   var cumuGPA = gpaArray[0].match(/\d\.\d{1,2}/);
   var majGPA  = gpaArray[1].match(/\d\.\d{1,2}/);
 
-
   //  Visualize the credit column data
   document.getElementById('credTotalEarnedCell').innerHTML= '<b>' + credTotalEarned[1] + '<b>';
   document.getElementById('credTotalInProgCell').innerHTML= '<b>' + credInProg[1] + '<b>';
@@ -44,8 +43,27 @@ function parseReport() {
   document.getElementById('credUpEarnedCell').innerHTML= '<b>' + upCredEarned[1] + '<b>';
   document.getElementById('credUpInProgCell').innerHTML= '<b>' + upCredInProg[1] + '<b>';
   document.getElementById('credUpNeededCell').innerHTML= '<b>' + upCredNeeded + '<b>';
-  document.getElementById('cumuGpaCell').innerHTML= '<b>' + cumuGPA + '<b>';
-  document.getElementById('majorGpaCell').innerHTML= '<b>' + majGPA + '<b>';
+
+  if(parseInt(cumuGPA) > 2) {
+    var cumuGpaColor = 'green';
+    var cumuGpaIconClass = 'glyphicon glyphicon-ok';
+  } else {
+    var cumuGpaColor = 'red';
+    var cumuGpaIconClass = 'glyphicon glyphicon-remove';
+  }
+
+  if(parseInt(majGPA) > 2) {
+    var majGpaColor = 'green';
+    var majGpaIconClass = 'glyphicon glyphicon-ok';
+  } else {
+    var majGpaColor = 'red';
+    var majGpaIconClass = 'glyphicon glyphicon-remove';
+  }
+
+  document.getElementById('cumuGpaCell').style.color  = cumuGpaColor;
+  document.getElementById('majorGpaCell').style.color = majGpaColor;
+  document.getElementById('cumuGpaCell').innerHTML= '<b>' + cumuGPA + '<b>' + '<span class="' + cumuGpaIconClass + ' statusIcon"</span>';
+  document.getElementById('majorGpaCell').innerHTML= '<b>' + majGPA + '<b>' + '<span class="' + majGpaIconClass + ' statusIcon"</span>';
 
   // Visualize the main requirements column
   var genReqCol = document.getElementById('genReqColumn');
@@ -62,7 +80,7 @@ function parseReport() {
       var rectClasses = 'dataRect alert alert-danger';
       var iconClass   = 'glyphicon glyphicon-remove';
     }
-    genReqCol.insertAdjacentHTML('beforeend', '<div class="' + rectClasses + '">' + entry.substring(2) + '<span class="' + iconClass + ' dataRectIcon"></span></div>');
+    genReqCol.insertAdjacentHTML('beforeend', '<div class="' + rectClasses + '">' + entry.substring(2) + '<span class="' + iconClass + ' statusIcon"></span></div>');
   });
 
 // Visualize the sub requirements column
@@ -74,6 +92,6 @@ function parseReport() {
        var rectClasses = 'dataRect alert alert-danger';
        var iconClass   = 'glyphicon glyphicon-remove';
      }
-     subReqCol.insertAdjacentHTML('beforeend', '<div class="' + rectClasses + '">' + entry.substring(5) + '<span class="' + iconClass + ' dataRectIcon"></span></div>');
+     subReqCol.insertAdjacentHTML('beforeend', '<div class="' + rectClasses + '">' + entry.substring(5) + '<span class="' + iconClass + ' statusIcon"></span></div>');
    });
 }

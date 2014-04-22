@@ -19,7 +19,7 @@ th {
   font-size: 13px;
 }
 
-.dataRectIcon {
+.statusIcon {
   float: right;
 }
 
@@ -29,12 +29,6 @@ th {
 
 #subHeader {
   text-indent: 40px;
-}
-
-#reportFileContainer {
-  border-left-style: solid;
-  border-width: 2px;
-  border-color: #C8C8C8;
 }
 
 #creditColumn {
@@ -50,7 +44,6 @@ th {
   border-color: #C8C8C8;
 }
 
-#cumuGpaCell,
-#majorGpaCell {
-  color: green;
+.leftColCell {
+  width: 70%;
 }
