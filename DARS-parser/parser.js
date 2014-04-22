@@ -54,21 +54,26 @@ function parseReport() {
   mainRequirements.forEach(function(entry){
     if(entry.substring(0,2) == 'OK') {
       var rectClasses = 'dataRect alert alert-success';
+      var iconClass   = 'glyphicon glyphicon-ok';
     } else if(entry.substring(0,2) == 'IP') {
       var rectClasses = 'dataRect alert alert-warning';
+      var iconClass   = 'glyphicon glyphicon-refresh';
     } else {
       var rectClasses = 'dataRect alert alert-danger';
+      var iconClass   = 'glyphicon glyphicon-remove';
     }
-    genReqCol.insertAdjacentHTML('beforeend', '<div class="' + rectClasses + '">' + entry.substring(2) + '</div>');
+    genReqCol.insertAdjacentHTML('beforeend', '<div class="' + rectClasses + '">' + entry.substring(2) + '<span class="' + iconClass + ' dataRectIcon"></span></div>');
   });
 
 // Visualize the sub requirements column
    subRequirements.forEach(function(entry){
      if(entry.substring(0,1) == '+') {
        var rectClasses = 'dataRect alert alert-success';
+       var iconClass   = 'glyphicon glyphicon-ok';
      } else {
        var rectClasses = 'dataRect alert alert-danger';
+       var iconClass   = 'glyphicon glyphicon-remove';
      }
-     subReqCol.insertAdjacentHTML('beforeend', '<div class="' + rectClasses + '">' + entry.substring(5) + '</div>');
+     subReqCol.insertAdjacentHTML('beforeend', '<div class="' + rectClasses + '">' + entry.substring(5) + '<span class="' + iconClass + ' dataRectIcon"></span></div>');
    });
 }

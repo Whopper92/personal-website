@@ -16,6 +16,11 @@ th {
   margin-bottom: 5px;
   padding: 10px;
   padding-bottom: 5px;
+  font-size: 13px;
+}
+
+.dataRectIcon {
+  float: right;
 }
 
 #mainHeader {
@@ -24,9 +29,6 @@ th {
 
 #subHeader {
   text-indent: 40px;
-}
-
-.stepNumber {
 }
 
 #reportFileContainer {
@@ -41,10 +43,8 @@ th {
   border-color: #C8C8C8;
 }
 
-#genEdColumn {
-}
-
-#majorColumn {
+#subReqColumn {
+  margin-left: -5px;
   border-left-style: solid;
   border-width: 2px;
   border-color: #C8C8C8;
