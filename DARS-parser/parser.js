@@ -53,11 +53,11 @@ function parseReport() {
 
   mainRequirements.forEach(function(entry){
     if(entry.substring(0,2) == 'OK') {
-      var rectClasses = 'dataRect complete';
+      var rectClasses = 'dataRect alert alert-success';
     } else if(entry.substring(0,2) == 'IP') {
-      var rectClasses = 'dataRect inProgress';
+      var rectClasses = 'dataRect alert alert-warning';
     } else {
-      var rectClasses = 'dataRect incomplete';
+      var rectClasses = 'dataRect alert alert-danger';
     }
     genReqCol.insertAdjacentHTML('beforeend', '<div class="' + rectClasses + '">' + entry.substring(2) + '</div>');
   });
@@ -65,9 +65,9 @@ function parseReport() {
 // Visualize the sub requirements column
    subRequirements.forEach(function(entry){
      if(entry.substring(0,1) == '+') {
-       var rectClasses = 'dataRect complete';
+       var rectClasses = 'dataRect alert alert-success';
      } else {
-       var rectClasses = 'dataRect incomplete';
+       var rectClasses = 'dataRect alert alert-danger';
      }
      subReqCol.insertAdjacentHTML('beforeend', '<div class="' + rectClasses + '">' + entry.substring(5) + '</div>');
    });
