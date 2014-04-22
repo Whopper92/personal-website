@@ -26,7 +26,9 @@ function parseReport() {
   // Needed credits section - we have to do this because of DARS formatting
   var neededCreditArray = [];
   neededCreditArray = report.match(/NEEDS:? *(\d{1,3}\.\d{2}) CREDITS/g);
+
   if(neededCreditArray == null) { neededCreditArray = ['0.00', '0.00'] }
+  if(neededCreditArray.length == 1) { neededCreditArray[1] = '0.00' }
   var credNeeded    = neededCreditArray[0].match(/\d{1,3}\.\d{2}/);
   var upCredNeeded  = neededCreditArray[1].match(/\d{1,3}\.\d{2}/);
 
