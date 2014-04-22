@@ -26,7 +26,6 @@ function parseReport() {
   // Needed credits section - we have to do this because of DARS formatting
   var neededCreditArray = [];
   neededCreditArray = report.match(/NEEDS:? *(\d{1,3}\.\d{2}) CREDITS/g);
-
   if(neededCreditArray == null) { neededCreditArray = ['0.00', '0.00'] }
   if(neededCreditArray.length == 1) { neededCreditArray[1] = '0.00' }
   var credNeeded    = neededCreditArray[0].match(/\d{1,3}\.\d{2}/);
@@ -35,6 +34,8 @@ function parseReport() {
   // GPA section - we have to do this for the same reason as above
   var gpaArray = [];
   gpaArray    = report.match(/(\d\.\d{2}) GPA/g);
+  if(gpaArray == null) { gpaArray = ['0.00', '0.00'] }
+  if(gpaArray.length == 1) { gpaArray[1] = '0.00' }
   var cumuGPA = gpaArray[0].match(/\d\.\d{1,2}/);
   var majGPA  = gpaArray[1].match(/\d\.\d{1,2}/);
 
