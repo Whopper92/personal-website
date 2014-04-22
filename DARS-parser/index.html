@@ -44,7 +44,7 @@
       <div id='reportFileContainer' class='col-md-6'>
         <textarea id='reportInput' rows='5' cols='100'></textarea>
         <p class="help-block">Run a DARS report and click 'Save printer friendly version.' Then, simply copy the full text and paste it here!</p>
-        <button type="submit" class="btn btn-primary" onClick='getCSData()'>Submit</button>
+        <button type="submit" class="btn btn-primary" onClick='getCSData();'>Submit</button>
       </div>
     </div>
 
@@ -61,15 +61,15 @@
               </tr>
               <tr>
                 <td><b>Earned</b></td>
-                <td><b>164.00</b></td>
+                <td id='credTotalEarnedCell'></td>
               </tr>
               <tr>
                 <td><b>In Progress</b></td>
-                <td><b>12.00</b></td>
+                <td id='credTotalInProgCell'></td>
               </tr>
               <tr>
                 <td><b>Needed</b></td>
-                <td><b>4.00</b></td>
+                <td id='credTotalNeededCell'></td>
               </tr>
             </table><br>
             <table class="table">
@@ -79,38 +79,38 @@
               </tr>
               <tr>
                 <td><b>Earned</b></td>
-                <td><b>30.00</b></td>
+                <td id='credUpEarnedCell'></td>
               </tr>
               <tr>
                 <td><b>In Progress</b></td>
-                <td><b>12.00</b></td>
+                <td id='credUpInProgCell'></td>
               </tr>
               <tr>
                 <td><b>Needed</b></td>
-                <td><b>30.00</b></td>
+                <td id='credUpNeededCell'></td>
               </tr>
             </table>
             <h4>GPA</h4>
             <table class='table'>
               <tr>
                 <td><b>Cumulative</b></td>
-                <td id='cumuGpaCell'>3.50</td>
+                <td id='cumuGpaCell'></td>
               </tr>
               <tr>
                 <td><b>Major</b></td>
-                <td id='majorGpaCell'>3.59</td>
+                <td id='majorGpaCell'></td>
             </table>
           </div>
         </div>
+
+
         <div id='genEdColumn' class="col-md-4">
           <h4>General Education Requirements</h4>
-          <br><br><br>
-          <hr class='DARSdivider'>
         </div>
+
+
         <div id='majorColumn' class='col-md-4'>
           <h4>Major Requirements</h4>
-          <br><br><br>
-          <hr class='DARSdivider'>
         </div>
       </div>
     </div>

@@ -13,9 +13,18 @@ th {
 }
 
 .dataRect {
+  margin-top:5px;
+  padding-top:10px;
   height: 40px;
-  background-color: #006600;
   color: white;
+}
+
+.incomplete {
+  background-color: #980000;
+}
+
+.complete {
+  background-color: #006600;
 }
 
 #mainHeader {
