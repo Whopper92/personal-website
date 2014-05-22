@@ -26,14 +26,14 @@
     <div class='col-md-12'>
       <h2>Language Selection</h2>
         <p class='projectDescParagraph'>The language chosen to write a chess engine such as this has a huge impact on its eventual performance. Because the primary method of computing the "best" move is through simple brute force, languages implemented with a compiler allow much more efficient execution, and thus a much deeper search.</p>
-        <p class='projectDescParagraph'>hat being said, I decided to write my bot entirely in in Ruby programming lanuage. I did this simply because I greatly enjoy coding in Ruby, and I wanted to learn more about the language. By the class tournament at the end of the term, I certainly had a greater appreciation for the difference in program speeds between compiled and interpreted programs.</p>
+        <p class='projectDescParagraph'>That being said, I decided to write my bot entirely in in Ruby programming lanuage. I did this simply because I greatly enjoy coding in Ruby, and I wanted to learn more about the language. By the class tournament at the end of the term, I certainly had a greater appreciation for the difference in program speeds between compiled and interpreted programs.</p>
         <p class='projectDescParagraph'>Indeed, I did not fare terribly well in the contest.</p><br>
 
       <h2>Board Representation</h2>
 
         <p class='projectDescParagraph'>A game of minichess is played on a five-by-six rectangular board. The AI must always possess a representation of the location of each of the pieces on the board, as well as each of the empty spaces. This data must be synced after the moves of either player, accounting for piece movement and captured pieces.</p>
         <p class='projectDescParagraph'>The most efficient way to represent all of this data in memory is with constructs known as bitboards. A bitboard, in the case of minichess, is a 30 bit integer, where each bit represents a position on the board. Many bitboards are needed to maintain data on various things, such as the location of the white knight, or of the black pawns. As piece movement occurs, bitwise operations are applied to the appropriate bitboards to change their contents.</p>
-        <p class='projectDescParagraph'>n my board implementation, I did not utilize bitboards. Instead, I created a simple 2D array to represent the board, with ASCii characters represented each square's current state. I did this primarily because of the difficulty in implementing bitboards, as well as course time constraints.</p><br>
+        <p class='projectDescParagraph'>In my board implementation, I did not utilize bitboards. Instead, I created a simple 2D array to represent the board, with ASCii characters represented each square's current state. I did this primarily because of the difficulty in implementing bitboards, as well as course time constraints.</p><br>
 <pre class='prettyprint'>
   def newBoard
   # Reset all piece locations to create fresh board
