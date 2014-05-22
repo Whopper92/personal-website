@@ -24,7 +24,6 @@
       <img class='img-responsive projectIntroImg' src='img/rookyImg1.png'>
     </div>
     <div class='col-md-12'>
-      <br>
       <h2>Language Selection</h2>
         <p class='projectDescParagraph'>The language chosen to write a chess engine such as this has a huge impact on its eventual performance. Because the primary method of computing the "best" move is through simple brute force, languages implemented with a compiler allow much more efficient execution, and thus a much deeper search.</p>
         <p class='projectDescParagraph'>hat being said, I decided to write my bot entirely in in Ruby programming lanuage. I did this simply because I greatly enjoy coding in Ruby, and I wanted to learn more about the language. By the class tournament at the end of the term, I certainly had a greater appreciation for the difference in program speeds between compiled and interpreted programs.</p>
@@ -34,7 +33,7 @@
 
         <p class='projectDescParagraph'>A game of minichess is played on a five-by-six rectangular board. The AI must always possess a representation of the location of each of the pieces on the board, as well as each of the empty spaces. This data must be synced after the moves of either player, accounting for piece movement and captured pieces.</p>
         <p class='projectDescParagraph'>The most efficient way to represent all of this data in memory is with constructs known as bitboards. A bitboard, in the case of minichess, is a 30 bit integer, where each bit represents a position on the board. Many bitboards are needed to maintain data on various things, such as the location of the white knight, or of the black pawns. As piece movement occurs, bitwise operations are applied to the appropriate bitboards to change their contents.</p>
-        <p class='projectDescParagraph'>n my board implementation, I did not utilize bitboards. Instead, I created a simple 2D array to represent the board, with ASCii characters represented each square's current state. I did this primarily because of the difficulty in implementing bitboards, as well as course time constraints.</p>
+        <p class='projectDescParagraph'>n my board implementation, I did not utilize bitboards. Instead, I created a simple 2D array to represent the board, with ASCii characters represented each square's current state. I did this primarily because of the difficulty in implementing bitboards, as well as course time constraints.</p><br>
 <pre class='prettyprint'>
   def newBoard
   # Reset all piece locations to create fresh board
@@ -64,12 +63,12 @@
       ['k', 'q', 'b', 'n', 'r']
     ]
   end
-</pre>
+</pre><br>
 
       <h2>Teaching the AI</h2>
 
         <p class='projectDescParagraph'>In implementations of game AI's for zero-sum games such as chess, the computer is actually quite dumb. In order to determine which moves are 'good,' the program scans through every possible, legal move. Using a hardcoded scoring system, each move is assigned a net score which can be compared with all of the other moves.</p>
-        <p class='projectDescParagraph'>The AI then must have the ability to see several moves into the future, or it may capture a pawn with a queen, only to have its queen captured next turn. A efficient chess program written in something like C should be able to scan several million moves in one second. That means the AI is actually seeing six to seven moves into the future, recursively judging which immediate move will lead to the greatest net gain in score.</p>
+        <p class='projectDescParagraph'>The AI then must have the ability to see several moves into the future, or it may capture a pawn with a queen, only to have its queen captured next turn. A efficient chess program written in something like C should be able to scan several million moves in one second. That means the AI is actually seeing six to seven moves into the future, recursively judging which immediate move will lead to the greatest net gain in score.</p><br>
 <pre class='prettyprint'>
   def moveScan(x0, y0, dx, dy, stopShort, capture, aState)
   # This method is called many times by the moveList method,
@@ -98,12 +97,12 @@
     end
     return moves if moves != []
   end
-</pre>
+</pre><br>
 
       <h2>Keeping Score</h2>
 
         <p class='projectDescParagraph'>The previously mentioned scoring algorithm is actually rather simple. Each piece type is assigned a static value. A pawn, for example, may be worth 100 points. The current player may then find a move in which they capture an enemy pawn, which would increase the net score in their favor by 100 points.</p>
-        <p class='projectDescParagraph'>Though effective enough to get an AI playing the game, this scoring system is not enough on its own. Other rules must be hardcoded in as well in order to elevate the 'strategy' of the AI, particularly in the early game. To do this, score values can be adjusted based on board location as well as piece type. One may provide incentive for the AI to move out its pawns early in the match by increasing the point value for movement of pawns out of starting positions.</p>
+        <p class='projectDescParagraph'>Though effective enough to get an AI playing the game, this scoring system is not enough on its own. Other rules must be hardcoded in as well in order to elevate the 'strategy' of the AI, particularly in the early game. To do this, score values can be adjusted based on board location as well as piece type. One may provide incentive for the AI to move out its pawns early in the match by increasing the point value for movement of pawns out of starting positions.</p><br>
 
 <pre class='prettyprint'>
 def scoreGen(aState, color)
@@ -195,7 +194,7 @@ def scoreGen(aState, color)
     stateScore = whiteScore + blackScore
     return stateScore
   end
-</pre>
+</pre><br>
 
       <h2>Advanced Algorithms</h2>
 
@@ -210,7 +209,7 @@ def scoreGen(aState, color)
         <br>
           <dt>Iterative Deepening</dd>
             <dd>In order to prevent a chess AI from scanning moves forever, a time limit is generally enforced, limiting negamax search time to between one and seven seconds, depending on tournament rules. This presents a problem when using the negamax algorithm, as the timer may expire in the middle of the scan of a search level. To ensure the AI has a 'best' answer at any given time, iterative deepening is used to store the latest 'best' move, and a condition is added to the recursive negamax to halt searching should time run out.<br>
-          </dd>
+          </dd><br>
           <dt>Alpha-Beta Pruning</dt>
             <dd>The concept behind alpha-beta pruning is rather complicated, but in essence the idea is to sort the first level of moves from best to worst value, traverse several levels down the first path and use the collected score value to determine if subsequent move paths should be searched at all.<br><br>This 'pruning' literally shaves off tens of thousands of unnecessary move node searches in the negamax search tree.
             </dd>
