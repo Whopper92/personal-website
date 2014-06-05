@@ -10,6 +10,7 @@ body {
   margin-top: 10px;
   padding-bottom: 30px;
   background-color: #FFFFFF;
+  border-radius: 15px;
 }
 
 #centerContent {
