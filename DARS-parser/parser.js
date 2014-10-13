@@ -47,7 +47,7 @@ function parseReport() {
   document.getElementById('credUpInProgCell').innerHTML= '<b>' + upCredInProg[1] + '<b>';
   document.getElementById('credUpNeededCell').innerHTML= '<b>' + upCredNeeded + '<b>';
 
-  if(parseInt(cumuGPA) > 2) {
+  if(parseFloat(cumuGPA) >= 2.0) {
     var cumuGpaColor = 'green';
     var cumuGpaIconClass = 'glyphicon glyphicon-ok';
   } else {
@@ -55,7 +55,7 @@ function parseReport() {
     var cumuGpaIconClass = 'glyphicon glyphicon-remove';
   }
 
-  if(parseInt(majGPA) > 2) {
+  if(parseFloat(majGPA) > 2.0) {
     var majGpaColor = 'green';
     var majGpaIconClass = 'glyphicon glyphicon-ok';
   } else {
