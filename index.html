@@ -49,12 +49,14 @@
             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
               <li class='dropdown-header'>Open Source</li>
               <li id='buildBoard'><a href="#">Build Board</a></li>
+              <li id='facter'><a href="#">Facter</a></li>
               <li id='d3presentation'><a href="#">D3.js Presentation</a></li>
               <li id='personalwebsite'><a href="#">Personal Website</a></li>
               <li id='sysadminTools'><a href="#">SysAdmin Tools</a></li>
               <li class="divider"></li>
               <li class='dropdown-header'>Course Work</li>
               <li id='rooky'><a href="#">Rooky</a></li>
+              <li id='compiler'><a href="#">MiniJava Compiler</a></li>
             </ul>
           </li>
           <li id='blogButton'><a href="./views/blog">Blog</a></li>
@@ -76,7 +78,7 @@
     </div>
     <nav id='footer' class="navbar navbar-default navbar-fixed-bottom navbar-inverse" role='navigation'>
       <div class='container'>
-        <p class='text-muted'>Last updated 04-15-14, at 2:07:29 PST 2014</p>
+        <p class='text-muted'>Last updated 12-14-14, at 2:07:29 PST 2014</p>
       </div>
     </nav>
   </body>
@@ -105,10 +107,12 @@
     $('#resumeButton').on('click', function() { loadPage('resume') })
     $('#calendarButton').on('click', function() { loadPage('calendar') })
     $('#buildBoard').on('click', function() { loadPage('buildBoard') })
+    $('#facter').on('click', function() { loadPage('facter') })
     $('#sysadminTools').on('click', function() { loadPage('sysadminTools') })
     $('#d3presentation').on('click', function() { loadPage('d3presentation') })
     $('#personalwebsite').on('click', function() { loadPage('personalwebsite') })
     $('#rooky').on('click', function() { loadPage('rooky') })
+    $('#compiler').on('click', function() { loadPage('compiler') })
     $('#blogButton').on('click', function() { loadPHP('blog') })
     $('#contactButton').on('click', function() { loadPage('contact') })
 
