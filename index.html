@@ -57,6 +57,9 @@
               <li class='dropdown-header'>Course Work</li>
               <li id='rooky'><a href="#">Rooky</a></li>
               <li id='compiler'><a href="#">MiniJava Compiler</a></li>
+              <li class='dropdown-header'>Miscellaneous</li>
+              <li id='wshell'><a href="#">Wshell</a></li>
+              <li id='vmify'><a href="#">Vmify</a></li>
             </ul>
           </li>
           <li id='blogButton'><a href="./views/blog">Blog</a></li>
@@ -116,6 +119,9 @@
     $('#blogButton').on('click', function() { loadPHP('blog') })
     $('#contactButton').on('click', function() { loadPage('contact') })
 
+    $('#wshell').on('click', function() { loadPage('wshell') })
+    $('#vmify').on('click', function() { loadPage('vmify') })
+
     function navBarActiveize(divid) {
       $('#homeButton').removeClass('active')
       $('#aboutButton').removeClass('active')
@@ -140,8 +146,7 @@
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElemenVmifo  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-50028935-2', 'willhopper.com');
