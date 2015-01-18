@@ -1,3 +1,44 @@
-<head>
-  <meta http-equiv="refresh" content="0; url=http://54.187.5.210:4567/" />
-</head>
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+
+<!-- Upper title bar -->
+<div class='page-header'>
+  <div class='row'>
+    <div id='mainTitle' class='col-md-6'><h1>DARS Parser</h1></div>
+  </div>
+  <div class='row'>
+    <div id='secondaryTitle' class='col-md-12'><p class='lead'>A University requirements reporter <span id='rubyTitleText'>Ruby</span>.</p></div>
+  </div>
+</div>
+
+<div class='page-content'>
+<!-- Left side bar -->
+  <div class='row'>
+    <div id='mainContent' class='col-md-11'><br>
+      <p>The DARS Parser is a simple Ruby application meant to help Portland Statue University students better visualize their university degree requirements. DARS, the Degree Auditing Report System, is an official university tool which can be used by students to generate a text-based report of their progress. Unfortunately, this report isn't pretty, and only provides a colorless wall of text. The purpose of this project was to create a very simple method to take the output of DARS and feed it into a visualizer to create images that immediate convey university status.
+      </p>
+      <ul>
+        <li><a href='https://github.com/whopper/DARS-parser'>DARS Parser </a>on GitHub</li>
+        <li><a href='http://54.187.5.210:4567/'>The Parser </a>itself</li>
+      </ul>
+    </div>
+    <div class='col-md-offset-1'>
+      <img class='img-responsive projectIntroImg' src='img/dars-parser.png'>
+    </div>
+    <div class='col-md-12'>
+      <h2>Implementation</h2>
+        <p class='projectDescParagraph'>From the beginning, my plan for the DARS parser was to act as a lexer of sorts for the wall of text that is produced by DARS. The concept is based around using regular expressions to capture important pieces, sections, and sub-sections of the report. Luckily, DARS has a (mostly) standard format for how sections are labeled, so I was able to extract most of the useful information.</p>
+        <p class='projectDescParagraph'>The project was actually implemented twice - first in Javascript and then in Ruby. I felt the original Javascript implementation wasn't scalable enough for future extensions to the parser, so I rewrote it entirely in Ruby. With the new platform in place, I plan to eventually move away from using regular expressions and build an actual character-by-character parser around the report to better format what the parser can display. It is currently difficult to extract the most meaningful bits from words and sections that could be discarded to no loss of the user, and I believe a more powerful parser is the solution to that problem.</p>
+    </div>
+  </div>
+</div>
+
+<script type='text/javascript'>
+  // Load in the bulky project reflection texts
+  $(document).ready(function() {
+    $('#language').load('views/examples/rookyLanguageSelectionText.html');
+    $('#board').load('views/examples/rookyBoardGenerationText.html');
+    $('#teaching').load('views/examples/rookyTeachingAIText.html');
+    $('#score').load('views/examples/rookyScoreGenerationText.html');
+    $('#algorithms').load('views/examples/rookyAlgorithmsText.html');
+  })
+</script>
