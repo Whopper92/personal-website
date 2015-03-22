@@ -1,10 +1,10 @@
 <!-- Upper title bar -->
 <div class='page-header'>
   <div class='row'>
-    <div id='mainTitle' class='col-md-6'><h1>Facter</h1></div>
+    <div id='mainTitle' class='col-md-6'><h1>Puppet and Facter</h1></div>
   </div>
   <div class='row'>
-    <div id='secondaryTitle' class='col-md-12'><p class='lead'>A system information gathering tool written in <span id='rubyTitleText'>Ruby</span> and maintained by Puppet Labs.</p></div>
+    <div id='secondaryTitle' class='col-md-12'><p class='lead'>Open-source configuration management tools writen in <span id='rubyTitleText'>Ruby</span> and <span id='rubyTitleText'>C++</span>, maintained by Puppet Labs.</p></div>
   </div>
 </div>
 
@@ -13,15 +13,28 @@
   <div class='row'>
     <div id='mainContent' class='col-md-11'><br>
       <p>
-        Facter description in progress.
+        Puppet is an open-source IT automation tool that runs on most flavors of Unix, as well as Windows. It allows a system administrator to programatically define the state of a machine once, and then simply run Puppet to preserve that state and prevent configuration drift.
+      </p>
+      <p>
+        Puppet utilizes a tool called Facter to gather information about the systems it runs on. Facter allows Puppet code to be written that takes the differences between various operating systems and platforms into account.
       </p>
       <ul>
-        <li><a href='https://github.com/puppetlabs/facter'>Facter </a>on GitHub</li>
-        <li>An in-depth overview of the facter project and my contributions coming soon</li>
+        <li><a href='https://github.com/puppetlabs/puppet'>Puppet</a>on GitHub</li>
+        <li><a href='https://github.com/puppetlabs/facter'>Facter</a>on GitHub</li>
       </ul>
     </div>
-    <div class='col-md-offset-1'>
-      <img class='img-responsive projectIntroImg' src='img/facter.png'>
+    <div class='col-md-12'>
+      <h2>Contributions</h2>
+      <p class='projectDescParagraph'>
+        As a developer on the open-source platform client team at Puppet Labs, my work primary revolves around these two projects. When I began as an intern in the Summer of 2014, My focus was on adding features for the release of Facter 2.2, which was highlighted by the addition of several high-profile structured facts and various bugfixes.
+      </p>
+      <p class='projectDescParagraph'>
+        At the same time, the rewrite of Facter into the new C++ CFacter was underway.
+I was lucky enough to be able to jump in and help out with development work for the first few releases, and continue to do so as we build up to version 1.0. This included work to ensure parity between the output of Ruby Facter and CFacter - something which is very important, as inconsistent fact values are highly likely to break Puppet manifests for <b>many</b> users.
+      </p>
+      <p class='projectDescParagraph'>
+        If not working on Facter, I'm almost certainly working on Puppet. One of the most gratifying aspects of helping with the development of Puppet version 4.0 this past year was ripping out thousands of lines of dead or deprecated code. My team also spent significant time working on the new "all-in-one agent," a large, multi-project update to unify where all the pieces of projects like Puppet end up in the filesystem.
+      </p>
     </div>
   </div>
 </div>
