@@ -1,3 +1,5 @@
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+
 <!-- Upper title bar -->
 <div class='page-header'>
   <div class='row'>
@@ -13,20 +15,53 @@
   <div class='row'>
     <div id='mainContent' class='col-md-11'><br>
       <p>
-        Puppet is an open-source IT automation tool that runs on most flavors of Unix, as well as Windows. It allows a system administrator to programatically define the state of a machine once, and then simply run Puppet to preserve that state and prevent configuration drift.
+        Puppet is an open-source IT automation tool that runs on most flavors of Unix, as well as Windows. It allows system administrators to programatically define the state of a machine once, and then simply run Puppet to preserve that state and prevent configuration drift.
       </p>
       <p>
         Puppet utilizes a tool called Facter to gather information about the systems it runs on. Facter allows Puppet code to be written that takes the differences between various operating systems and platforms into account.
       </p>
       <ul>
-        <li><a href='https://github.com/puppetlabs/puppet'>Puppet</a>on GitHub</li>
-        <li><a href='https://github.com/puppetlabs/facter'>Facter</a>on GitHub</li>
+        <li><a href='https://github.com/puppetlabs/puppet'>Puppet</a> on GitHub</li>
+        <li><a href='https://github.com/puppetlabs/facter'>Facter</a> on GitHub</li>
       </ul>
     </div>
     <div class='col-md-12'>
       <h2>Contributions</h2>
       <p class='projectDescParagraph'>
         As a developer on the open-source platform client team at Puppet Labs, my work primary revolves around these two projects. When I began as an intern in the Summer of 2014, My focus was on adding features for the release of Facter 2.2, which was highlighted by the addition of several high-profile structured facts and various bugfixes.
+      </p>
+
+      <pre class='prettyprint'>
+{
+  "processors": {
+    "models": [
+      "Intel(R) Xeon(R) CPU E5-2630 0 @ 2.30GHz"
+    ],
+    "count": 1,
+    "physicalcount": 1
+  },
+  "kernel": "Linux",
+  "architecture": "amd64",
+  "hardwaremodel": "x86_64",
+  "operatingsystem": "Ubuntu",
+  "os": {
+    "name": "Ubuntu",
+    "family": "Debian",
+    "release": {
+      "major": "14.04",
+      "full": "14.04"
+    },
+    "lsb": {
+      "distcodename": "trusty",
+      "distid": "Ubuntu",
+      "distdescription": "Ubuntu 14.04.1 LTS",
+      "distrelease": "14.04",
+      "majdistrelease": "14.04"
+    }
+  }
+      </pre>
+      <p class='text-muted'>
+        Selected sample output two new structured facts in Facter 2.2: `os` and `processors`
       </p>
       <p class='projectDescParagraph'>
         At the same time, the rewrite of Facter into the new C++ CFacter was underway.
