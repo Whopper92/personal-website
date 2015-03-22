@@ -49,7 +49,7 @@
             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
               <li class='dropdown-header'>Open Source</li>
               <li id='buildBoard'><a href="#">Build Board</a></li>
-              <li id='facter'><a href="#">Puppet + Facter</a></li>
+              <li id='puppet-facter'><a href="#">Puppet + Facter</a></li>
               <li id='sysadminTools'><a href="#">SysAdmin Tools</a></li>
               <li class="divider"></li>
               <li class='dropdown-header'>Course Work</li>
@@ -61,7 +61,6 @@
               <li id='dars-parser'><a href="#">DARS Parser</a></li>
               <li id='personalwebsite'><a href="#">Personal Website</a></li>
               <li id='vmify'><a href="#">Vmify</a></li>
-              <li id='wshell'><a href="#">Wshell</a></li>
             </ul>
           </li>
           <li id='blogButton'><a href="./views/blog">Blog</a></li>
@@ -112,7 +111,7 @@
     $('#resumeButton').on('click', function() { loadPage('resume') })
     $('#calendarButton').on('click', function() { loadPage('calendar') })
     $('#buildBoard').on('click', function() { loadPage('buildBoard') })
-    $('#facter').on('click', function() { loadPage('facter') })
+    $('#puppet-facter').on('click', function() { loadPage('puppet-facter') })
     $('#sysadminTools').on('click', function() { loadPage('sysadminTools') })
     $('#d3presentation').on('click', function() { loadPage('d3presentation') })
     $('#personalwebsite').on('click', function() { loadPage('personalwebsite') })
@@ -123,7 +122,6 @@
 
     $('#dars-parser').on('click', function() { loadPage('dars-parser') })
     $('#vmify').on('click', function() { loadPage('vmify') })
-    $('#wshell').on('click', function() { loadPage('wshell') })
 
     function navBarActiveize(divid) {
       $('#homeButton').removeClass('active')
