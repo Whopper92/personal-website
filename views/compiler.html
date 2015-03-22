@@ -24,7 +24,7 @@
     </div>
     <div class='col-md-12'>
       <h2>Lexical Analysis</h2>
-        <p class='projectDescParagraph'>The first required component for our MiniJava compiler was the Lexer, which utilized a predefined grammar and set of lexical tokens. The lexer was first implemented using the lexer-generation tool <a href='https://javacc.java.net/'>JavaCC</a>. Next, the same process was carried out manually in Java.</p> In both implementations, the result is the same. The text of a MiniJava program is transformed into a series of tokens to be used by the parser in the next step of compilation.
+        <p class='projectDescParagraph'>The first required component for our MiniJava compiler was the Lexer, which utilized a predefined grammar and set of lexical tokens. The lexer was first implemented using the lexer-generation tool <a href='https://javacc.java.net/'>JavaCC</a>. Next, the same process was carried out manually in Java.</p> In both implementations, the result is the same. The text of a MiniJava program is transformed into a series of tokens to be used by the parser in the next step of compilation.<br>
 
 <pre class='prettyprint'>
  65 &ltMULTILINECOMMENT&gt SKIP :  // rules for inside of multiline comment state
@@ -168,18 +168,17 @@
 727     return code;
 728   }
 </pre>
-<p class='prettyprint'>
-Handling 'return' AST nodes. Here, we add an IR 'return' instruction, which may or may not include a value.
+<p class='text-muted'>Handling 'return' AST nodes. Here, we add an IR 'return' instruction, which may or may not include a value.
 </p>
 
       <h2>Optimizing IR Code</h2>
         <p class='projectDescParagraph'>Once IR code is generated, it can usually be optimized to remove redundant or otherwise unnecessary instructions and operations. This project specifically called for constant folding, address optimization, and comparison embedding.</p>
 
-        <p class='projectDescParagraph'><b>Constant folding</b> is the process of identifying constants and simplifying them where possible. The AST node "(Binop + 2 4)", for exammple, can immediately be simplified to the integer literal 6.</p>
+        <p class='projectDescParagraph'><b>Constant folding</b> is the process of identifying constants and simplifying them where possible. The AST node <b>"(Binop + 2 4)"</b>, for example, can immediately be simplified to the integer literal 6.</p>
 
         <p class='projectDescParagraph'><b>Address optimization</b> takes constants in the context of address offsets and uses them directly instead of doing calculations with temporaries.</p>
 
-        <p class='projectDescParagraph'><b>Comparison embedding</b> is an optimization specific to 'If' and 'While' instructions. Instead of first evaluating the condition expression and comparing it against the boolean literal 'false,' it inserts the condition expression directly into a 'CJUMP' instruction and does the comparison there.</p>
+        <p class='projectDescParagraph'><b>Comparison embedding</b> is an optimization specific to <b>if</b> and <b>while</b> instructions. Instead of first evaluating the condition expression and comparing it against the boolean literal <b>false<b>, it inserts the condition expression directly into a <b>CJUMP</b> instruction and does the comparison there.</p>
 
 <pre class='prettyprint'>
 425   static CodePack genLOP(Ast0.Binop n) throws Exception {
