@@ -24,53 +24,228 @@
     </div>
     <div class='col-md-12'>
       <h2>Lexical Analysis</h2>
-        <p class='projectDescParagraph'>Lexer description in progress.</p>
+        <p class='projectDescParagraph'>The first required component for our MiniJava compiler was the Lexer, which utilized a predefined grammar and set of lexical tokens. The lexer was first implemented using the lexer-generation tool <a href='https://javacc.java.net/'>JavaCC</a>. Next, the same process was carried out manually in Java.</p> In both implementations, the result is the same. The text of a MiniJava program is transformed into a series of tokens to be used by the parser in the next step of compilation.
 
 <pre class='prettyprint'>
-  Lexer code to be here.
-</pre><br>
+ 65 &ltMULTILINECOMMENT&gt SKIP :  // rules for inside of multiline comment state
+ 66 {
+ 67   "*/" : DEFAULT  // Back to the default state when we hit the end comment marker
+ 68 }
+ 69
+ 70 TOKEN:  // Define keywords
+ 71 {
+ 72   &ltKEYWORD:  "class" | "extends" | "static" | "public" | "void" | "int"
+ 73 | "boolean" | "new" | "if" | "else" | "while" | "return" | "main"
+ 74 | "true" | "false" | "String" | "System" | "out" | "println" | "this"&gt
+ 75 }
+ 76
+ 77 TOKEN:  // Identifiers, int literals and string literals
+ 78 {
+ 79   &lt#DIGIT:  ["0"-"9"]&gt
+ 80 |  &lt#LETTER: ["A"-"Z"]|["a"-"z"]&gt
+ 81 |  &ltID:      (&ltLETTER&gt(&ltLETTER&gt|&ltDIGIT&gt)*)\&gt    { Lexer1.tknName = "ID";     }
+ 82 |  &ltINTLIT:  (\&ltDIGIT&gt)+&gt                       { Lexer1.tknName = "INTLIT"; }
+ 83 |  &ltSTRLIT:  ("\""(~["\"", "\r", "\n"])*"\"")\&gt { Lexer1.tknName = "STRLIT"; }
+ 84 }
+</pre>
+<p class='text-muted'>An excerpt from my JavaCC implementation of the lexer. Using a tool such as JavaCC is much cleaner than manual implementation.</p>
 
       <h2>Parsing</h2>
-        <p class='projectDescParagraph'>Parser description in progress.</p>
+        <p class='projectDescParagraph'>With the lexer in place, the next necessary item for compilation is the parser. In this implementation, the requirement was to extend the lexer JavaCC implementation to handle the full MiniJava grammar, and insert semantic actions in each 'node' of the grammar to build an abstract syntax tree.</p>
+
+        <p class='projectDescParagraph'>Simply put, the lexer matches strings from the source program into tokens, and when a token is recognized, its parsing routine is executed. This results in the construction of the AST.</p>
 <pre class='prettyprint'>
-  Parser code to be here.
-</pre><br>
+287 /*  Operator precedence functions
+288  *  Needed to remove ambiguity from Expr()
+289  */
+290
+291 void A(): {} {B() (("||") B())* }
+292 void B(): {} {C() (("&&") C())* }
+293 void C(): {} {D() (("=="|"!=") D())* }
+294 void D(): {} {E() (("&lt"|"&lt="|"&gt"|"&gt=") E())* }
+295 void E(): {} {F() (("+"|"-") F())* }
+296 void F(): {} {G() (("*"|"/") G())* }
+297 void G(): {} {("-"|"!")* H() }
+298
+299 void H(): {}
+300 {
+301   /* I ripped out Lvalue() calls here because they were causing
+302      indirect left recursion, and it was easier to bring its.
+303      productions here directly */
+304   ExtId() [("(" [Args()] ")" | "[" Expr() "]" )]
+305 | "(" Expr() ")"
+306 | Literal()
+307 }
+</pre>
+<p class='text-muted'>One of the most challenging aspects of writing the parser was removing ambiguity from the provided MiniJava grammar. This code deals with operator precedence in arithmetic operations.</p>
 
       <h2>Type Checking</h2>
-        <p class='projectDescParagraph'>Type checking description in progress.</p>
+        <p class='projectDescParagraph'>Once the AST is built, the next step for the compiler is to perform static analysis. We were required to first do type checking to ensure that the backend of the compiler would not receive invalid type information. Along with this, the program was also searched for missing return statements and uninitialized variables.</p>
 
 <pre class='prettyprint'>
-  Type checking code to be here.
-</pre><br>
+693   // Field ---
+694   //  Exp obj;
+695   //  String nm;
+696   //
+697   //  1. Verify that n.onj is ObjType, and its corresponding class exists.
+698   //  2. Verify that n.nm is a valid field in the object.
+699   //
+700   static Ast.Type check(Ast.Field n) throws Exception {
+701     Ast.Type obj_type = check(n.obj);
+702     if (!(obj_type instanceof Ast.ObjType)) {
+703       throw new TypeException("(In Field) Object is not of ObjType: " + obj_type);
+704     }
+705
+706     // Verify corresponding class exists
+707     ClassInfo obj_class_decl = classEnv.get(((Ast.ObjType)obj_type).nm);
+708     if (obj_class_decl == null) {
+709       throw new TypeException("(In Field) Class doesn't exist " + (((Ast.ObjType)obj_type).nm));
+710     }
+711
+712     // Verify that n.nm is a valid field in the object
+713     // Make sure a vardecl exists for this field
+714     Ast.VarDecl valid_field = obj_class_decl.findFieldDecl(n.nm.toString());
+715     if (valid_field == null) {
+716       throw new TypeException("(In Field) Can't find field " + n.nm);
+717     }
+718
+719     // Find declaration
+720     return valid_field.t;
+721   }
+</pre>
+<p class='text-muted'>Here, we verify that a field object is correct.</p>
 
       <h2>Interpreting IR Code</h2>
-        <p class='projectDescParagraph'>IR interpreter description in progress.</p>
+        <p class='projectDescParagraph'>Before diving into the compiler backend, we were required to implement an interpreter for MiniJava IR (Intermediate Representation) code.</p>
+
+        <p class='projectDescParagraph'>The primary purpose of the interpreter is to take in IR code directly and execute it on the fly. Rather than producing machine code, it provides output for the program itself.</p>
 
 <pre class='prettyprint'>
-  IR interpreter code to be here.
-</pre><br>
+370   // Load ---..
+371   //  Dest dst;
+372   //  Addr addr;
+373   //  Dest "=" Addr, so t1 = [a]
+374   //  An addr is [<IntLit>] "[" Src "]"  -- load some offset from the heap into a destination
+375   static int execute(IR1.Load n) throws Exception {
+376     int addrIndex = evaluate(n.addr);
+377     Val result = heap.get(addrIndex);
+378
+379     if (n.dst instanceof IR1.Id) {
+380       funcVarMap.get(curFunction).put(((IR1.Id) n.dst).toString(), result);
+381     } else if (n.dst instanceof IR1.Temp) {
+382       funcTempMap.get(curFunction).put(((IR1.Temp) n.dst).num, result);
+383     }
+384     return CONTINUE;
+385   }
+</pre>
+<p class='text-muted'>Interpreting an IR 'Load' instruction.</p>
 
       <h2>Generating IR Code</h2>
-        <p class='projectDescParagraph'>IRGen description in progress.</p>
+        <p class='projectDescParagraph'>The purpose of the IR code generator is to map a MiniJava program's AST to a set of IR instructions. Instead of directly executing based on semantic actions for AST nodes, the code generator decides which IR instructions are appropriate for a given node, and outputs the full set of instructions.</p>
 
+        <p class='projectDescParagraph'>The IR code generator must also keep track of class and object information for the program. Class declarations are kept in a global data structure so that type information can be easily investigated for individual AST nodes of a given class type.</p>
 <pre class='prettyprint'>
-  IRGen code to be here.
-</pre><br>
+707   // Return ---..
+708   // Exp val;
+709   //
+710   // Codegen Guideline:.
+711   // 1. If val is non-null, generate IR code for it, and generate an IR.Return
+712   //    with its value
+713   // 2. Otherwise, generate an IR.Return with no value
+714   //
+715   static List&ltIR.Inst&gt gen(Ast.Return n, ClassInfo cinfo, Env env) throws Exception {
+716     List&ltIR.Inst&gt code = new ArrayList&ltIR.Inst&gt();
+717
+718     if (n.val != null) {
+719       CodePack p;
+720       p = gen(n.val, cinfo, env);
+721       code.addAll(p.code);
+722       code.add(new IR.Return(p.src));
+723     } else {
+724       code.add(new IR.Return());
+725     }
+726
+727     return code;
+728   }
+</pre>
+<p class='prettyprint'>
+Handling 'return' AST nodes. Here, we add an IR 'return' instruction, which may or may not include a value.
+</p>
 
       <h2>Optimizing IR Code</h2>
-        <p class='projectDescParagraph'>IR optimization description in progress.</p>
+        <p class='projectDescParagraph'>Once IR code is generated, it can usually be optimized to remove redundant or otherwise unnecessary instructions and operations. This project specifically called for constant folding, address optimization, and comparison embedding.</p>
+
+        <p class='projectDescParagraph'><b>Constant folding</b> is the process of identifying constants and simplifying them where possible. The AST node "(Binop + 2 4)", for exammple, can immediately be simplified to the integer literal 6.</p>
+
+        <p class='projectDescParagraph'><b>Address optimization</b> takes constants in the context of address offsets and uses them directly instead of doing calculations with temporaries.</p>
+
+        <p class='projectDescParagraph'><b>Comparison embedding</b> is an optimization specific to 'If' and 'While' instructions. Instead of first evaluating the condition expression and comparing it against the boolean literal 'false,' it inserts the condition expression directly into a 'CJUMP' instruction and does the comparison there.</p>
 
 <pre class='prettyprint'>
-  IR optimization code to be here.
-</pre><br>
+425   static CodePack genLOP(Ast0.Binop n) throws Exception {
+426     List&ltIR0.Inst&gt code = new ArrayList&ltIR0.Inst&gt();
+427     CodePack l = gen(n.e1);
+428     CodePack r = gen(n.e2);
+429     IR0.Temp t = new IR0.Temp();
+430
+431     if (n.op == Ast0.BOP.OR) {
+432       boolean right_can_eval = false,
+433               right_value = false,
+434               left_can_eval = false,
+435               left_value = false;
+436
+437       // If either right or left is true, return true
+438       // true || false, true || true, true || x, x || true
+439       if (l.src instanceof IR0.BoolLit) {
+440         left_can_eval = true;
+441         left_value = ((IR0.BoolLit) l.src).b;
+442       } else {
+443         left_can_eval = false;
+444       }
+445
+446       if (r.src instanceof IR0.BoolLit) {
+447         right_can_eval = true;
+448         right_value = ((IR0.BoolLit) r.src).b;
+449       } else {
+450         right_can_eval = false;
+451       }
+...
+</pre>
+<p class='text-muted'>Optimizing boolean expressions in arithmetic operations.</p>
 
       <h2>Generating Assembly from IR Code</h2>
-        <p class='projectDescParagraph'> CodeGen description in progress.</p>
+        <p class='projectDescParagraph'>The final compilation step for the MiniJava compiler is to convert IR instructions into X86-64 assembly code. IR instructions require mapping to specific assembly instructions. Register allocation and stack frames must be managed for the duration of the program.</p>
 
 <pre class='prettyprint'>
-  CodeGen code to be here.
-</pre><br>
-
+334   // Store ---..
+335   //  Addr addr;
+336   //  Src src;
+337   //
+338   // Guideline:
+339   // - call gen_source() to generate code for src
+340   // - call gen_addr() to generate code for addr
+341   // - generate a "mov"
+342   //   . pay attention to size info (IR1's stored values
+343   //     are all integers)
+344   //
+345   static void gen(IR1.Store n) throws Exception {
+346
+347     /* 1) Call gen_source() to generate code for src */
+348     gen_source(n.src, tempReg1);
+349     /* 2) Call gen_addr() to generate code for addr */
+350     gen_addr(n.addr, regMap.get(n.addr));
+351     /* 3) Generate a "mov" */
+352     X86.Reg srcReg = regMap.get(n.src);
+353
+354     if (srcReg == null) {
+355       srcReg = tempReg1;
+356     }
+357 ....
+358     int regSize = srcReg.r;
+359     X86.emit0("movl " + X86.regName[1][regSize] + ",(" + regMap.get(((IR1.Addr)n.addr).base) + ")");
+360   }
+</pre>
+<p class='text-muted'>Converting an IR 'Store' instruction into an X86-64 'MOV'</p>
         </div>
       <br>
     </div>
