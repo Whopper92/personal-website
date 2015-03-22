@@ -178,7 +178,7 @@
 
         <p class='projectDescParagraph'><b>Address optimization</b> takes constants in the context of address offsets and uses them directly instead of doing calculations with temporaries.</p>
 
-        <p class='projectDescParagraph'><b>Comparison embedding</b> is an optimization specific to <b>if</b> and <b>while</b> instructions. Instead of first evaluating the condition expression and comparing it against the boolean literal <b>false<b>, it inserts the condition expression directly into a <b>CJUMP</b> instruction and does the comparison there.</p>
+        <p class='projectDescParagraph'><b>Comparison embedding</b> is an optimization specific to <b>if</b> and <b>while</b> instructions. Instead of first evaluating the condition expression and comparing it against the boolean literal <b>false</b>, it inserts the condition expression directly into a <b>CJUMP</b> instruction and does the comparison there.</p>
 
 <pre class='prettyprint'>
 425   static CodePack genLOP(Ast0.Binop n) throws Exception {
