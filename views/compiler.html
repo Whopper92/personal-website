@@ -239,7 +239,7 @@
 354     if (srcReg == null) {
 355       srcReg = tempReg1;
 356     }
-357 ....
+357
 358     int regSize = srcReg.r;
 359     X86.emit0("movl " + X86.regName[1][regSize] + ",(" + regMap.get(((IR1.Addr)n.addr).base) + ")");
 360   }
