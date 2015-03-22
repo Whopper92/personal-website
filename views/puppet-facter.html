@@ -61,14 +61,58 @@
   }
       </pre>
       <p class='text-muted'>
-        Selected sample output two new structured facts in Facter 2.2: `os` and `processors`
+        Selected sample output of two new structured facts that I implemented for Facter 2.2: `os` and `processors`
       </p>
       <p class='projectDescParagraph'>
         At the same time, the rewrite of Facter into the new C++ CFacter was underway.
 I was lucky enough to be able to jump in and help out with development work for the first few releases, and continue to do so as we build up to version 1.0. This included work to ensure parity between the output of Ruby Facter and CFacter - something which is very important, as inconsistent fact values are highly likely to break Puppet manifests for <b>many</b> users.
       </p>
+
+      <pre class='prettyprint'>
+ 41         // Query for architecture and transform numerical ID into a string based on
+ 42         // https://msdn.microsoft.com/en-us/library/aa394373%28v=vs.85%29.aspx.
+ 43         // Use the architecture of the first result.
+ 44         auto arch_id = _wmi.query(wmi::processor, {wmi::architecture});
+ 45         if (!arch_id.empty()) {
+ 46             int architecture = stoi(wmi::get(arch_id.front(), wmi::architecture));
+ 47
+ 48             switch (architecture) {
+ 49                 case 0:
+ 50                     isa = "x86";
+ 51                     break;
+ 52                 case 1:
+ 53                     isa = "MIPS";
+ 54                     break;
+ 55                 case 2:
+ 56                     isa = "Alpha";
+ 57                     break;
+ 58                 case 3:
+ 59                     isa = "PowerPC";
+ 60                     break;
+ 61                 case 5:
+ 62                     isa = "ARM";
+ 63                     break;
+ 64                 case 6:
+ 65                     isa = "Itanium-based systems";
+ 66                     break;
+ 67                 case 9:
+ 68                     isa = "x64";
+ 69                     break;
+ 70                 default:
+ 71                     LOG_DEBUG("Unable to determine processor type: unknown architecture");
+ 72                     isa = "";
+ 73                     break;
+ 74             }
+ 75         } else {
+ 76             LOG_DEBUG("WMI processor Architecture query returned no results.");
+ 77             isa = "";
+ 78         }
+      </pre>
+      <p class='text-muted'>
+Working with Facter requires constant investigation of ways to extract data from various platforms. This particular commit took some research into WMI to figure out how to determine processor architecture in Windows.
+      </p>
       <p class='projectDescParagraph'>
-        If not working on Facter, I'm almost certainly working on Puppet. One of the most gratifying aspects of helping with the development of Puppet version 4.0 this past year was ripping out thousands of lines of dead or deprecated code. My team also spent significant time working on the new "all-in-one agent," a large, multi-project update to unify where all the pieces of projects like Puppet end up in the filesystem.
+        While not working on Facter, I'm almost certainly working on Puppet. One of the most gratifying aspects of helping with the development of Puppet version 4.0 this past year was ripping out thousands of lines of dead or deprecated code. My team also spent significant time working on the new "all-in-one agent," a large, multi-project update to unify where all the pieces of projects like Puppet end up in the filesystem.
       </p>
     </div>
   </div>
