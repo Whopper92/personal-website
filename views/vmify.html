@@ -1,3 +1,5 @@
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+
 <!-- Upper title bar -->
 <div class='page-header'>
   <div class='row'>
@@ -13,7 +15,7 @@
   <div class='row'>
     <div id='mainContent' class='col-md-11'><br>
       <p>
-      Vmify is a command-line utility written for internal use by Puppet Labs developers. It acts as a wrapper around an in-house VM provisioning and distribution application, and strives make getting a VM of any platform easy and instant.
+      Vmify is a command-line utility written for internal use by Puppet Labs developers. It acts as a wrapper around an in-house VM provisioning and distribution application, and strives to make getting a VM of any platform effortless.
       </p>
       <ul>
         <li><a href='https://github.com/whopper/WorkScripts/blob/master/vmify/vmify'>Vmify </a>on GitHub</li>
@@ -25,11 +27,12 @@
     <div class='col-md-12'>
       <h2>Purpose</h2>
         <p class='projectDescParagraph'>
-      In my current development job, I work on several projects which are supported across dozens of operating systems, platforms and distributions. Luckily, the Quality Engineering team at Puppet Labs has developed a killer VM provisioning system which allows developers to send a short request to the VM pooler API and immediately receive the hostname to a fresh system, which can be logged into and used for development and testing. This process revolves around a few `curl` commands to talk with the aforementioned API. Vmify's purpose is to abstract these away and provide a simple, unified command-line utility to get VMs on demand.
+      In my current job, I work on several projects which are supported across dozens of operating systems, platforms and distributions. Luckily, the Quality Engineering team at Puppet Labs has developed a killer VM provisioning system which allows developers to send a short request to the VM pooler API and immediately receive the hostname to a fresh system, which can be logged into and used for development and testing.<br>
+      This process revolves around a few `curl` commands to talk with the aforementioned API. Vmify's purpose is to abstract these away and provide a simple, unified command-line utility to get VMs on demand.
         </p>
       <h2>Tool Selection</h2>
         <p class='projectDescParagraph'>
-        Vmify was originally written as a straight Ruby shell script. While this worked for the most part, I found that I wished for an easier way to extend the application when I needed to add more command-line options. I decided to re-implement the script using the <a href='https://rubygems.org/gems/cri'>CRI</a> gem, which allowed me to not only easily extend `vmify`, but also made the code much cleaner and the output much more aesthetically pleasing.</p>
+        Vmify was originally written as a plain Ruby shell script. While this worked for the most part, I found that I wished for an easier way to extend the application when I needed to add more command-line options. I decided to re-implement the script using the <a href='https://rubygems.org/gems/cri'>CRI</a> gem, which allowed me not only to easily extend `vmify`, but also make the code much cleaner and the output much more aesthetically pleasing.</p>
       <h2>Implementation</h2>
         <p class='projectDescParagraph'>
           The general goal of Vmify is simple: allow all options to be quickly passed into the utility for instant creation and connection to a VM, or prompt for options if they are not provided. This allows the user to explore which platforms and operating system versions are available.
