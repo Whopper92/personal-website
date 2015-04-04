@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset="utf8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Capstone">
+    <meta name="author" content="Will Hopper">
+    <link rel="stylesheet" media="screen" href="../style/bootstrap.min.css">
+    <link rel="stylesheet" media="screen" href="../style/bootstrapOverrides.css">
+    <link rel="stylesheet" media="screen" href="../style/blog.css">
+    <link rel="stylesheet" media="screen" href="../style/general.css">
+    <link rel="stylesheet" media="screen" href="../style/images.css">
+    <title>Scrum Workflow</title>
+  </head>
+  <body>
+    <nav class='navbar navbar-default navbar-static-top navbar-inverse' role='navigation'>
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://willhopper.com/capstone">PDX Capstone 2015</a>
+      </div>
+
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li id='homeButton'><a href="#">Home</a></li>
+          <li id='teamButton'><a href="#">Team</a></li>
+          <li id='meetingButton'><a href="#">Meetings</a></li>
+         <li id='docsButton' class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown">
+              Team Docs
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+              <li id='scrumButton'><a href="#">Scrum Workflow</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </nav>
+  <!-- Main site content -->
+
+  <!-- Upper title bar -->
+    <div id='mainRow' class='row'>
+      <div class='col-md-10 col-md-offset-1 centerMainContainer'>
+        <div class='col-md-10 col-md-offset-1 mainContentContainer'>
+          <div class='page-header'>
+            <div class='row'>
+              <div id='mainTitle' class='col-md-6'><h1>Scrum Workflow</h1></div>
+            </div>
+            <div class='row'>
+              <div id='secondaryTitle' class='col-md-12'><p class='lead'>A quick guide to the general scrum workflow using <span id='rubyTitleText'>Axosoft</span>.</p></div>
+            </div>
+          </div>
+
+          <div class='page-content'>
+          <!-- Left side bar -->
+            <div class='row'>
+              <div id='mainContent' class='col-md-11'><br>
+                <p>The following is a general run-though of our scrum board, which is hosted through Axosoft. Included are guides for useful features and the usage of our workflow columns.</p>
+                <ul>
+                  <li><a href='https://pdx-capstone-2015.axosoft.com/'>Link to Our Board</a></li>
+                  <li><a href="#kanban">The Kanban Board</a></li>
+                  <li><a href="#workflowColumns">Workflow Columns</a></li>
+                  <li><a href="#ticketFields">Ticket Fields</a></li>
+                  <li><a href="#issueList">Issue List</a></li>
+                  <li><a href="#sprints">Sprints</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class='col-md-12'>
+              <a id="kanban"></a>
+              <h2>The Kanban Board</h2>
+              <div class='col-md-offset-1'>
+                <img class='img-responsive projectIntroImg' src='img/ScrumBoard.png'>
+              </div>
+              <p class='projectDescParagraph'>During sprints, you will spend most of your time on the <b>Kanban</b> view of our issue tracker. All of the tickets that we planned to accomplish in the current sprint will appear in our <b>workflow columns</b>, which can be seen above. To enter this view, simply click the small box in the upper left-hand corner of the screen, directly below the <b>Issues</b> tab. The similar button on the left will bring you to the <b>issue tracker</b>.</p>
+
+              <p class='projectDescParagraph'>The first time you access this view, you'll need to select the <b>Capstone Scrum</b> workflow from the <b>Workflow Columns</b> dropdown above the board. Also, be sure to select the correct sprint in the left-hand panel, in the <b>Releases</b> box.</p><br>
+            <a id="workflowColumns"></a>
+            <h4>Workflow Columns</h4>
+            <p class='projectDescParagraph'>As you work on a ticket, move it across the board as you make progress. The columns have the following meanings:</p>
+              <div class='dl-horizontal'>
+                <dt>To Do</dt>
+                  <dd>Tickets in this column are in need of work or attention, and are not currently being worked on.</dd><br>
+                <dt>Doing</dt>
+                  <dd>Tickets that are currently being worked on with nothing impeding progress.</dd><br>
+                <dt>Ready for Merge</dt>
+                  <dd>Tickets which have outstanding pull requests. The code is ready to be reviewed and merged if the review and continuous integration tests pass.</dd><br>
+                <dt>Test & Review</dt>
+                  <dd>Once code for a ticket has been merged, the ticket is placed in this column for final review. It is in need of functional review and sign off to be completed.</dd><br>
+                <dt>Done</dt>
+                  <dd>Tickets in this column have passed all tests and reviews, and are fully resolved. Hurray!</dd><br>
+                </div>
+              </div>
+
+            <h4>Ticket Fields</h4>
+            <a id="ticketFields"></a>
+            <p class='projectDescParagraph'>Tickets have several fields which help to keep track of its general status.</p>
+              <div class='dl-horizontal'>
+                <dt>Project</dt>
+                  <dd>The project name the ticket is associated with. We may end up having multiple projects (front-end, back-end, etc).</dd><br>
+                <dt>Release</dt>
+                  <dd>The sprint which the ticket is part of.</dd><br>
+                <dt>Workflow Step</dt>
+                  <dd>The Kanban workflow step the ticket is currently in.</dd><br>
+                <dt>Assigned To</dt>
+                  <dd>Who is responsible for carrying out the next step on the ticket. This will change several times over the course of a ticket's life. While developing a feature, assign the ticket to yourself. If reviewing a ticket, assign it to yourself.</dd><br>
+                <dt>Priority</dt>
+                  <dd>How urgent the completion of the ticket is. <b>High</b> generally means the ticket needs extra attention or is blocking other work. <b>Medium</b> is standard priority, while <b>low</b> is something that could be pushed back if needed.</dd><br>
+                <dt>Initial Estimate</dt>
+                  <dd>How much effort we expect the ticket to require. Use the <b>story point option</b>. <b>One</b> point is an easy, trivial change, while <b>five</b> points is a large, difficuly change.</dd><br>
+                <dt>Status</dt>
+                  <dd>The current Kanban status of the ticket.</dd><br>
+                <dt>Links</dt>
+                  <dd>If you file a pull request for a ticket, add a link to it in this field.</dd><br>
+                <dt>Description</dt>
+                  <dd>The general description of the issue. Make this as detailed as possible, and provide steps to reproduce if the issue is a bug.</dd><br>
+                <dt>Comments</dt>
+                  <dd>General comments about the issue. If you are functionally reviewing a ticket and complete your review, leave your notes here before resolving.</dd><br>
+                </div>
+              </div>
+            </div>
+
+            <div class='col-md-12'>
+              <a id="issueList"></a>
+              <h2>Issue Lists</h2>
+              <div class='col-md-offset-1'>
+                <img class='img-responsive projectIntroImg' src='img/IssueList.png'>
+              </div>
+              <p class='projectDescParagraph'>This view allows for a look at issues in list form. Just as with the Kanban board, by clicking on different sprints, releases or projects in the left-hand panel, you can filter which issues are visible.</p>
+              <p class='projectDescParagraph'>To access this view, use the small square button in the upper left-hand corner, directly under the <b>Issues</b> tab.</p>
+            </div>
+
+            <div class='col-md-12'>
+              <a id="sprints"></a>
+              <h2>Sprints</h2>
+              <div class='col-md-offset-1'>
+                <img class='img-responsive projectIntroImg' src='img/SprintExample.png'>
+              </div>
+              <p class='projectDescParagraph'>Every week, we will organize our planned work into a <b>sprint</b>. To do this, we will prioritize and divide up work deemed most urgent, as well as issues which were not completed in the last sprint.</p>
+              <p class='projectDescParagraph'>Each issue will begin in the <b>To Do</b> column. Everyone will begin a sprint with at least one issue assigned to them, and there may be a few unassigned tickets up for grabs. Should all issues be completed early, we may draw new tickets from the backlog and add them to the sprint.</p>
+              <p class='projectDescParagraph'>As seen in the image above, to filter the Kanban board on the current sprint, click the sprint name in the left-hand <b>All Releases</b> box. In this example, the current sprint is titled <b>Sprint: Apr 7 - Apr 14</b></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav id='footer' class="navbar navbar-default navbar-fixed-bottom navbar-inverse" role='navigation'>
+    </nav>
+  </body>
+</html>
+
+<!-- Load up needed JavaScript -->
+<script type="text/javascript" src="../js/jquery-2.0.3.min.js"></script>
+<script type='text/javascript'>
+  $(document).ready(function() {
+    $.getScript('../js/bootstrap.min.js')
+
+    var screenWidth = $(document).width();
+    if(screenWidth > 700) {
+      $('.mainContentContainer').css('min-width', '600px')
+    }
+
+    $('#homeButton').on('click', function() { navBarActiveize('#homeButton') })
+    $('#teamButton').on('click', function() { navBarActiveize('#contactButton') })
+    $('#meetingButton').on('click', function() { navBarActiveize('#meetingButton') })
+    $('#scrumButton').on('click', function() { navBarActiveize('#docsButton') })
+
+    $('#homeButton').on('click', function() { window.location = 'http://willhopper.com/capstone'; })
+    $('#teamButton').on('click', function() { loadPage('team') })
+    $('#meetingButton').on('click', function() { loadPage('meeting') })
+    $('#scrumButton').on('click', function() { window.location ='http://willhopper.com/capstone/scrumworkflow.html'; })
+
+    function navBarActiveize(divid) {
+      $('#homeButton').removeClass('active')
+      $('#teamButton').removeClass('active')
+      $('#meetingButton').removeClass('active')
+      $('#scrumButton').removeClass('active')
+      $(divid).addClass('active')
+    };
+
+    function loadPage(pageid) {
+      $('.mainContentContainer').html('');
+      $('.mainContentContainer').load(pageid + '.html');
+    }
+  })
+</script>

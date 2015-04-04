@@ -28,6 +28,15 @@
           <li id='homeButton' class='active'><a href="#">Home</a></li>
           <li id='teamButton'><a href="#">Team</a></li>
           <li id='meetingButton'><a href="#">Meetings</a></li>
+          <li id='docsButton' class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown">
+              Team Docs
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+              <li id='scrumButton'><a href="#">Scrum Workflow</a></li>
+            </ul>
+          </li>
         </ul>
       </div><!--/.nav-collapse -->
     </nav>
@@ -63,15 +72,18 @@
     $('#homeButton').on('click', function() { navBarActiveize('#homeButton') })
     $('#teamButton').on('click', function() { navBarActiveize('#contactButton') })
     $('#meetingButton').on('click', function() { navBarActiveize('#meetingButton') })
+    $('#scrumButton').on('click', function() { navBarActiveize('#docsButton') })
 
     $('#homeButton').on('click', function() { loadPage('home') })
     $('#teamButton').on('click', function() { loadPage('team') })
     $('#meetingButton').on('click', function() { loadPage('meeting') })
+    $('#scrumButton').on('click', function() { window.location ='http://willhopper.com/capstone/scrumworkflow.html'; })
 
     function navBarActiveize(divid) {
       $('#homeButton').removeClass('active')
       $('#teamButton').removeClass('active')
       $('#meetingButton').removeClass('active')
+      $('#scrumButton').removeClass('active')
       $(divid).addClass('active')
     };
 
