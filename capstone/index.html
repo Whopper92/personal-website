@@ -28,6 +28,7 @@
           <li id='homeButton' class='active'><a href="#">Home</a></li>
           <li id='teamButton'><a href="#">Team</a></li>
           <li id='meetingButton'><a href="./meetings">Meetings</a></li>
+          <li id='reportButton'><a href="./reports">Reports</a></li>
           <li id='docsButton' class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown">
               Docs
@@ -72,17 +73,20 @@
     $('#homeButton').on('click', function() { navBarActiveize('#homeButton') })
     $('#teamButton').on('click', function() { navBarActiveize('#teamButton') })
     $('#meetingButton').on('click', function() { navBarActiveize('#meetingButton') })
+    $('#reportButton').on('click', function() { navBarActiveize('#reportButton') })
     $('#scrumButton').on('click', function() { navBarActiveize('#docsButton') })
 
     $('#homeButton').on('click', function() { loadPage('home') })
     $('#teamButton').on('click', function() { loadPage('team') })
     $('#meetingButton').on('click', function() { loadPage('meeting') })
+    $('#reportButton').on('click', function() { loadPage('report') })
     $('#scrumButton').on('click', function() { window.location ='http://willhopper.com/capstone/scrumworkflow.html'; })
 
     function navBarActiveize(divid) {
       $('#homeButton').removeClass('active')
       $('#teamButton').removeClass('active')
       $('#meetingButton').removeClass('active')
+      $('#reportButton').removeClass('active')
       $('#scrumButton').removeClass('active')
       $(divid).addClass('active')
     };
