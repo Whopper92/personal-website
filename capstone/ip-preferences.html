@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset="utf8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Capstone">
+    <meta name="author" content="Will Hopper">
+    <link rel="stylesheet" media="screen" href="../style/bootstrap.min.css">
+    <link rel="stylesheet" media="screen" href="../style/bootstrapOverrides.css">
+    <link rel="stylesheet" media="screen" href="../style/blog.css">
+    <link rel="stylesheet" media="screen" href="../style/general.css">
+    <link rel="stylesheet" media="screen" href="../style/images.css">
+    <title>Team IP Preferences</title>
+  </head>
+  <body>
+    <nav class='navbar navbar-default navbar-static-top navbar-inverse' role='navigation'>
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://willhopper.com/capstone">PDX Capstone 2015</a>
+      </div>
+
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li id='homeButton'><a href="#">Home</a></li>
+         <li id='docsButton' class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown">
+              Docs
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+              <li id='contractButton'><a href="#">Team Contract</a></li>
+              <li id='ipButton'><a href="#">Team IP Preferences</a></li>
+              <li id='scrumButton'><a href="#">Scrum Workflow</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </nav>
+  <!-- Main site content -->
+
+  <!-- Upper title bar -->
+    <div id='mainRow' class='row'>
+      <div class='col-md-10 col-md-offset-1 centerMainContainer'>
+        <div class='col-md-10 col-md-offset-1 mainContentContainer'>
+          <div class='page-header'>
+            <div class='row'>
+              <div id='mainTitle' class='col-md-6'><h1>Team IP Preferences</h1></div>
+            </div>
+            <div class='row'>
+              <div id='secondaryTitle' class='col-md-12'><p class='lead'>Official Documentation for team discussion on intellectual property.</p></div>
+            </div>
+          </div>
+
+          <div class='page-content'>
+          <!-- Left side bar -->
+            <div class='row'>
+              <div id='mainContent' class='col-md-11'><br>
+                <p>To be discussed soon...</p>
+              </div>
+            </div>
+            <div class='col-md-12'>
+           </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav id='footer' class="navbar navbar-default navbar-fixed-bottom navbar-inverse" role='navigation'>
+    </nav>
+  </body>
+</html>
+
+<!-- Load up needed JavaScript -->
+<script type="text/javascript" src="../js/jquery-2.0.3.min.js"></script>
+<script type='text/javascript'>
+  $(document).ready(function() {
+    $.getScript('../js/bootstrap.min.js')
+
+    var screenWidth = $(document).width();
+    if(screenWidth > 700) {
+      $('.mainContentContainer').css('min-width', '600px')
+    }
+
+    $('#homeButton').on('click', function() { navBarActiveize('#homeButton') })
+    $('#contractButton').on('click', function() { navBarActiveize('#docsButton') })
+    $('#ipButton').on('click', function() { navBarActiveize('#docsButton') })
+    $('#scrumButton').on('click', function() { navBarActiveize('#docsButton') })
+
+    $('#homeButton').on('click', function() { window.location = 'http://willhopper.com/capstone'; })
+    $('#teamButton').on('click', function() { loadPage('team') })
+    $('#meetingButton').on('click', function() { loadPage('meeting') })
+    $('#contractButton').on('click', function() { window.location ='http://willhopper.com/capstone/team-contract.html'; })
+    $('#ipButton').on('click', function() { window.location ='http://willhopper.com/capstone/ip-preferences.html'; })
+    $('#scrumButton').on('click', function() { window.location ='http://willhopper.com/capstone/scrumworkflow.html'; })
+
+    function navBarActiveize(divid) {
+      $('#homeButton').removeClass('active')
+      $('#teamButton').removeClass('active')
+      $('#meetingButton').removeClass('active')
+      $('#contractButton').removeClass('active')
+      $('#ipButton').removeClass('active')
+      $('#scrumButton').removeClass('active')
+      $(divid).addClass('active')
+    };
+
+    function loadPage(pageid) {
+      $('.mainContentContainer').html('');
+      $('.mainContentContainer').load(pageid + '.html');
+    }
+  })
+</script>
