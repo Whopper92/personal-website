@@ -36,6 +36,8 @@
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+              <li id='contractButton'><a href="#">Team Contract</a></li>
+              <li id='ipButton'><a href="#">Team IP Preferences</a></li>
               <li id='scrumButton'><a href="#">Scrum Workflow</a></li>
             </ul>
           </li>
@@ -76,6 +78,8 @@
     $('#meetingButton').on('click', function() { navBarActiveize('#meetingButton') })
     $('#reportButton').on('click', function() { navBarActiveize('#reportButton') })
     $('#calendarButton').on('click', function() { navBarActiveize('#calendarButton') })
+    $('#contractButton').on('click', function() { navBarActiveize('#docsButton') })
+    $('#ipButton').on('click', function() { navBarActiveize('#docsButton') })
     $('#scrumButton').on('click', function() { navBarActiveize('#docsButton') })
 
     $('#homeButton').on('click', function() { loadPage('home') })
@@ -84,6 +88,8 @@
     $('#reportButton').on('click', function() { loadPage('report') })
     $('#calendarButton').on('click', function() { loadPage('calendar') })
     $('#scrumButton').on('click', function() { window.location ='http://willhopper.com/capstone/scrumworkflow.html'; })
+    $('#contractButton').on('click', function() { window.location ='http://willhopper.com/capstone/team-contract.html'; })
+    $('#ipButton').on('click', function() { window.location ='http://willhopper.com/capstone/ip-preferences.html'; })
 
     function navBarActiveize(divid) {
       $('#homeButton').removeClass('active')
@@ -91,6 +97,8 @@
       $('#meetingButton').removeClass('active')
       $('#reportButton').removeClass('active')
       $('#calendarButton').removeClass('active')
+      $('#contractButton').removeClass('active')
+      $('#ipButton').removeClass('active')
       $('#scrumButton').removeClass('active')
       $(divid).addClass('active')
     };
