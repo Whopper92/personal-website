@@ -32,7 +32,7 @@
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-              <li id='contractButton'><a href="#">Team Contract</a></li>
+              <li id='rulesButton'><a href="#">Team Rules</a></li>
               <li id='ipButton'><a href="#">Team IP Preferences</a></li>
               <li id='scrumButton'><a href="#">Scrum Workflow</a></li>
             </ul>
@@ -170,7 +170,7 @@
     $('#homeButton').on('click', function() { window.location = 'http://willhopper.com/capstone'; })
     $('#teamButton').on('click', function() { loadPage('team') })
     $('#meetingButton').on('click', function() { loadPage('meeting') })
-    $('#contractButton').on('click', function() { window.location ='http://willhopper.com/capstone/team-contract.html'; })
+    $('#rulesButton').on('click', function() { window.location ='http://willhopper.com/capstone/team-rules.html'; })
     $('#ipButton').on('click', function() { window.location ='http://willhopper.com/capstone/ip-preferences.html'; })
     $('#scrumButton').on('click', function() { window.location ='http://willhopper.com/capstone/scrumworkflow.html'; })
 
@@ -178,7 +178,7 @@
       $('#homeButton').removeClass('active')
       $('#teamButton').removeClass('active')
       $('#meetingButton').removeClass('active')
-      $('#contractButton').removeClass('active')
+      $('#rulesButton').removeClass('active')
       $('#ipButton').removeClass('active')
       $('#scrumButton').removeClass('active')
       $(divid).addClass('active')
