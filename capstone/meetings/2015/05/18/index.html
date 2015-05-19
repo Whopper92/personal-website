@@ -58,6 +58,38 @@
 
 <h4>Notes</h4>
 <pre class='prettyprint'>
+  o Just texts to watches isn't enough
+    - Some queries have different conditions. The PAP query has 2: a short alarm means you
+      should be worried. A long alarm means heart attack or something very bad.
+
+  o We could send the watches snapshots of data in graphs
+  o Swiping between patients is a possibility
+  o Alert colors and such should be different based on alert type for watch
+  o There may be clinical data in S-Store, which we can use as the 'integration' goal
+    when we place the data in the patient view.
+
+  o Primary goal of web UI: demonstrate real time monitoring
+    - real time updating graphs
+    - Current waveforms
+    - Current waveforms compared to historical waveforms
+
+  o Another goal: ETL: getting data and cleaning it up, loading it into S-Store
+    - We may end up visualizing raw and cleaned up data somehow
+
+  o Goal: consistency of timeframes across views and graphs
+    - Different waveforms should have synced up timeframes
+
+  Action items:
+
+  o We need to start making detailed mockups of graphs for waveforms
+  o We should search for existing medical app type things to base our design on
+  o We need to come up with what we'll need for stored procedures
+  o Research Android watches quickly and pick one to go with
+
+
+
+
+
 </pre>
     </div>
 
