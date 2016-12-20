@@ -1,0 +1,41 @@
+<!-- Upper title bar -->
+<div class='page-header'>
+  <div class='row'>
+    <div id='mainTitle' class='col-md-6'><h1>Puppet Strings</h1></div>
+  </div>
+  <div class='row'>
+    <div id='secondaryTitle' class='col-md-12'><p class='lead'>A documentation parser for Puppet extensions written in <span id='rubyTitleText'>Ruby</span>.</p></div>
+  </div>
+</div>
+
+<div class='page-content'>
+<!-- Left side bar -->
+  <div class='row'>
+    <div id='mainContent' class='col-md-11'><br>
+      <p>Very recently, I was assigned to a new engineering team with the objective of enhancing the experience of writing Puppet code. As part of this transition, I inherited the much-beloved puppet-strings project.</p>
+
+      <p>In a nutshell, strings is a YARD-based documentation tool for Puppet code and extensions that are written in either the Puppet language or Ruby. Given some simple in-code comments containing YARD tags, Strings generates consistent HTML or JSON documentation for many Puppet constructs, including:</p>
+      <ul>
+        <li>Puppet classes, 3.x / 4.x API functions, and Puppet language functions</li>
+        <li>Resource types and providers</li>
+        <li>Ruby classes and methods</li>
+      </ul>
+
+      <p>The project had fallen by the wayside over the last year due to a lack of prioritization. Luckily, it had just been mostly rewritten and shocked back to life by a fellow engineer, and now just needed to be carried the rest of the way to a 1.0.0 release.</p>
+
+      <p>With this objective in mind, I set out in an effort to learn the codebase inside and out and determine what still needed to be done. Although the rewrite was complete, there were still quite a few issues and absent requirements that I discovered while interviewing our initial consumers of the project: the Puppet docs team and several members of the open-source community.</p>
+
+      <p>Given this feedback, it was clear that we were not quite ready for a major 1.0 release. Instead, we decided to immediately release version 0.99.0 with the fixes that had been made to signify an imminent 1.0 release. This allowed early adopters to try out the new features in production and also gave me a chance to make necessary breaking changes to the JSON API without violating semantic versioning.</p>
+
+      <p>A few months and dozens of fixes later and Strings 1.0.0 was released into the wild! To help drive knowledge and adoption of strings as a best practice for documenting Puppet code, I published this <a href='https://puppet.com/blog/using-puppet-strings-generate-great-documentation-puppet-modules'>blog post on the official Puppet Blog</a> to help newcomers get started.</p>
+
+      <ul>
+        <li><a href='https://github.com/puppetlabs/puppet-strings'>Puppet Strings</a> on GitHub</li>
+        <li><a href='https://rubygems.org/gems/puppet-strings'>Puppet Strings Gem</a> on Rubygems.org</li>
+      </ul>
+    </div>
+    <div class='col-md-offset-1'>
+      <img class='img-responsive projectIntroImg' src='img/strings1.png'>
+    </div>
+  </div>
+</div>
