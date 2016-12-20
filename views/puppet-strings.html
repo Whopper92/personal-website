@@ -30,7 +30,7 @@
 
       <p>Strings is also smart enough to detect mismatched types in YARD documentation tags and Puppet function definitions, helping module authors prevent accidental breaking changes to public APIs.</p>
 
-      <h2>What Does This All Actually Look Like?</h2>
+      <h2>Example Usage</h2>
       <p>I like to illustrate the usage of Strings with a very simple example:</p>
       <pre class='prettyprint'>
   # An example function written in Puppet.
@@ -44,7 +44,6 @@
       </pre>
 
     <p>By using basic YARD tags like `@param` and `@return`, we can fully document the specification of a function right where the code lives, preventing the docs from getting stale and out of date.
-
 
       <h2>The Great Puppet Strings 1.0 Effort</h2>
       <p>For about a year before I inherited Strings, the project was largely unmaintained due to a lack of prioritization. It had fallen behind Puppet itself and was no longer correctly producing documentation. Luckily, one of our senior engineers decided to work on a complete rewrite of the project to bring it back to life. Once this was done, it became my task to carry the project the rest of the way to a 1.0.0 release.</p>
