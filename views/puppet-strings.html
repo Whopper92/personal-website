@@ -25,7 +25,29 @@
         <img class='img-responsive projectIntroImg' src='img/strings1.png'>
       </div>
 
-      <p>The project had fallen by the wayside over the last year due to a lack of prioritization. Luckily, it had just been mostly rewritten and shocked back to life by a fellow engineer, and now just needed to be carried the rest of the way to a 1.0.0 release.</p>
+      <h2>Why Document Code?</h2>
+      <p>It may sound like a no-brainer, but good documentation is vitally important to the quality and usability of any software. In our case, Puppet Strings serves two user bases: module authors and module consumers. The inline comments allow those actually writing Puppet modules to quickly understand and work with the code, while the ability to generate HTML docs allows module consumers to use the very same documentation as a reference when installing modules into their production environment.</p>
+
+      <p>Strings is also smart enough to detect mismatched types in YARD documentation tags and Puppet function definitions, helping module authors prevent accidental breaking changes to public APIs.</p>
+
+      <h2>What Does This All Actually Look Like?</h2>
+      <p>I like to illustrate the usage of Strings with a very simple example:</p>
+      <pre class='prettyprint'>
+  # An example function written in Puppet.
+  # @param name the name to say hello to.
+  # @return [String] Returns a string.
+  # @example Calling the function
+  #    example(‘world’)
+  function example(String $name) {
+      “hello, $name”
+  }
+      </pre>
+
+    <p>By using basic YARD tags like `@param` and `@return`, we can fully document the specification of a function right where the code lives, preventing the docs from getting stale and out of date.
+
+
+      <h2>The Great Puppet Strings 1.0 Effort</h2>
+      <p>For about a year before I inherited Strings, the project was largely unmaintained due to a lack of prioritization. It had fallen behind Puppet itself and was no longer correctly producing documentation. Luckily, one of our senior engineers decided to work on a complete rewrite of the project to bring it back to life. Once this was done, it became my task to carry the project the rest of the way to a 1.0.0 release.</p>
 
       <p>With this objective in mind, I set out in an effort to learn the codebase inside and out and determine what still needed to be done. Although the rewrite was complete, there were still quite a few issues and absent requirements that I discovered while interviewing our initial consumers of the project: the Puppet docs team and several members of the open-source community.</p>
 
