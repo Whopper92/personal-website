@@ -79,6 +79,10 @@ body {
   color: #d85a1a;
 }
 
+#pconfText {
+  color: #7300e6;
+}
+
 /* Blog Elements */
 .blogParagraph {
   text-indent: 0px;
