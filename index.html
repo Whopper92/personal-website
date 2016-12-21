@@ -48,6 +48,7 @@
             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
               <li class='dropdown-header'>Work + Open Source</li>
               <li id='buildBoard'><a href="#">Build Board</a></li>
+              <li id='communitytriage'><a href="#">Community Triage</a></li>
               <li id='puppet-facter'><a href="#">Puppet + Facter</a></li>
               <li id='puppet-strings'><a href="#">Puppet Strings</a></li>
               <li id='vmify'><a href="#">Vmify</a></li>
@@ -63,7 +64,8 @@
               <li id='compiler'><a href="#">MiniJava Compiler</a></li>
               <li class="divider"></li>
               <li class='dropdown-header'>Talks</li>
-              <li id='d3presentation'><a href="#">D3.js Presentation</a></li>
+              <li id='cpppresentation'><a href="#">Modern C++</a></li>
+              <li id='d3presentation'><a href="#">D3.js</a></li>
               <li id='pconfpresentation'><a href="#">PuppetConf 2016</a></li>
             </ul>
           </li>
@@ -112,9 +114,11 @@
     $('#resumeButton').on('click', function() { loadPage('resume') })
     $('#academicButton').on('click', function() { loadPage('academics') })
     $('#buildBoard').on('click', function() { loadPage('buildBoard') })
+    $('#communitytriage').on('click', function() { loadPage('communitytriage') })
     $('#puppet-facter').on('click', function() { loadPage('puppet-facter') })
     $('#puppet-strings').on('click', function() { loadPage('puppet-strings') })
     $('#sysadminTools').on('click', function() { loadPage('sysadminTools') })
+    $('#cpppresentation').on('click', function() { loadPage('moderncpp') })
     $('#d3presentation').on('click', function() { loadPage('d3presentation') })
     $('#personalwebsite').on('click', function() { loadPage('personalwebsite') })
     $('#pconfpresentation').on('click', function() { loadPage('pconfpresentation') })

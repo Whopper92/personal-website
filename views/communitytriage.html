@@ -1,0 +1,33 @@
+<!-- Upper title bar -->
+<div class='page-header'>
+  <div class='row'>
+    <div id='mainTitle' class='col-md-6'><h1>Puppet Community Triage</h1></div>
+  </div>
+  <div class='row'>
+    <div id='secondaryTitle' class='col-md-12'><p class='lead'>A <span id='rubyTitleText'>Ruby</span> application to track community pull requests on open source projects.</p></div>
+  </div>
+</div>
+
+<div class='page-content'>
+<!-- Left side bar -->
+  <div class='row'>
+    <div id='mainContent' class='col-md-11'><br>
+      <p>While working on the core team at Puppet, my coworkers and I found that we were having a hard time keeping up with the dozens upon dozens of community pull requests being opened and updated every day across multiple open source projects. The life cycle of a pull request can be complex, with multiple days of back-and-forth conversation and updates, making it hard to remember just what state a particular pull request is in.</p>
+
+      <p>What we needed was a way to determine which pull requests needed attention at a glance, which is what the core community triage app set out to accomplish, using the Trello and GitHub APIs.</p><br>
+    </div>
+    <div class='col-md-offset-1'>
+      <img class='img-responsive projectIntroImg' src='img/triage-app.png'>
+    </div>
+
+    <div id='mainContent' class='col-md-11'>
+      <br>
+      <p>The app consists solely of a simple Sinatra application that listens for a payload sent via a GitHub webhook. When data is received, the Trello API is leveraged to automatically update and reposition cards on a dedicated Trello board representing pull requests.</p>
+
+      <p>Despite its simplicity, the project has proven to be very useful to the core team, erasing much of the tedium of manually tracking the states of pull requests during triage meetings.
+      <ul>
+        <li><a href='https://github.com/whopper/puppet-core-community-triage'>puppet-core-community-triage</a> on GitHub</li>
+      </ul>
+    </div>
+  </div>
+</div>
