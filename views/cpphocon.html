@@ -1,0 +1,71 @@
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+
+<!-- Upper title bar -->
+<div class='page-header'>
+  <div class='row'>
+    <div id='mainTitle' class='col-md-6'><h1>C++ HOCON</h1></div>
+  </div>
+  <div class='row'>
+    <div id='secondaryTitle' class='col-md-12'><p class='lead'>A <span id='rubyTitleText'>C++</span> port of the HOCON project, maintained by Puppet.</p></div>
+  </div>
+</div>
+
+<div class='page-content'>
+<!-- Left side bar -->
+  <div class='row'>
+    <div id='mainContent' class='col-md-11'><br>
+      <p>
+        HOCON, or Human-Optimized Config Object Notation, is a superset of JSON meant to be used for configuration files commonly edited by Humans. It was originally written in Java by <a href='https://github.com/typesafehub/config/blob/master/HOCON.md#hocon-human-optimized-config-object-notation'>typesafehub</a>, and has now been ported into both Ruby and C++ by Puppet.
+      </p>
+
+      <ul>
+        <li><a href='https://github.com/puppetlabs/cpp-hocon'>cpp-hocon</a> on GitHub</li>
+      </ul>
+    </div>
+    <div class='col-md-12'>
+      <h2>Contributions</h2>
+      <p class='projectDescParagraph'>
+        While assigned to this project, my tasks were to scope out and ticket the remaining classes which needed to be ported and then carry out as much of that work as I could. As we heavily utilized C++ 11 at Puppet, this was a great opportunity for me to learn the ins and outs of modern C++ development. I relied on RAII and initialization lists, smart pointers, move semantics, and paid special attention to the const correctness of my code as I went.
+      </p><br>
+
+      <pre class='prettyprint'>
+namespace hocon {
+
+    simple_includer::simple_includer(shared_includer fallback): _fallback(move(fallback)) {}
+
+    shared_includer simple_includer::with_fallback(shared_includer fallback) const {
+        auto self = shared_from_this();
+        if (self == fallback) {
+            throw config_exception(_("Trying to create includer cycle"));
+        } else if (_fallback == fallback) {
+            return self;
+        } else if (_fallback) {
+            return make_shared<simple_includer>(_fallback->with_fallback(move(fallback)));
+        } else {
+            return make_shared<simple_includer>(move(fallback));
+        }
+    }
+
+    shared_object simple_includer::include(shared_include_context context, string what) const {
+        auto obj = include_without_fallback(context, what);
+
+        // now use the fallback includer if any and merge its results
+        if (_fallback) {
+            return dynamic_pointer_cast<const config_object>(obj->with_fallback(_fallback->include(move(context), move(what))));
+        } else {
+            return obj;
+        }
+    }
+  ...
+}
+      </pre>
+      <p class='text-muted'>
+An example snippet of some of the code I wrote while porting HOCON into C++. I had a great time working on this project and it greatly increased my knowledge and confidence in writing modern C++.
+      </p><br>
+
+      <p class='projectDescParagraph'>
+        This implementation of HOCON is now complete. Shortly after its completion, we updated the Facter project to <a href='https://docs.puppet.com/facter/3.4/release_notes.html#improvement'>be configurable</a> and added a new configuration file which used HOCON syntax.
+      </p>
+    </div>
+  </div>
+</div>
