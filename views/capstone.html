@@ -1,0 +1,89 @@
+<!-- Upper title bar -->
+<div class='page-header'>
+  <div class='row'>
+    <div id='mainTitle' class='col-md-6'><h1>S-Store MIMIC Demo (S-PI)</h1></div>
+  </div>
+  <div class='row'>
+    <div id='secondaryTitle' class='col-md-12'><p class='lead'>Web and Android apps to simulate handling real time ICU data.</p></div>
+  </div>
+</div>
+
+<div class='page-content'>
+<!-- Left side bar -->
+  <div class='row'>
+    <div id='mainContent' class='col-md-11'><br>
+      <p>S-PI (Streaming Patient Information) is a collection of applications built as a Senior Capstone project in the Computer Science department at Portland State University. It includes three components: a JavaScript web front end, a Java backend, and an Android application built for smart watches.</p>
+
+      <p>It utilizes an experimental, real-time streaming database system (S-Store) to stream actual, anonymized intensive care unit patient data into our own graphs. We then graph the biometric data (such as ECG, RESP and PAP) in real-time, sending out alerts to smart watches when dangerous values are observed.</p><br>
+      <div class='col-md-offset-1'>
+        <img class='projectIntroImg' width="1000" src='img/spi.png'>
+      </div>
+      <ul>
+        <li><a href='https://github.com/Team-B-Capstone'>S-PI</a> on GitHub</li>
+      </ul>
+
+      <h2>Capstone</h2>
+      <p>At PSU, the senior capstone is the culmination of one’s final year of undergraduate studies. In the Computer Science department, the course takes place over a six month period in which teams of roughly eight students work together to deliver a software product for a real client.</p>
+      <p>At the beginning of the term, team leaders are chosen by the chair of the CS department based on applications sent in a week earlier by interested individuals. I was very interested in doing this, and was lucky enough to be selected.</p>
+
+      <p>As a lead, my role was significantly different than the rest of my team. Rather than being responsible for the actual writing of the code that needed to be delivered, I worked in a management capacity and worked to build a scrum team based on my experiences in the industry. As such, this post is less about the technical specifications of our project and more about my experiences running this team.</p>
+
+      <h2>Team Selection</h2>
+      <p>Upon being selected as a team lead, the first task I was given was to read through some sixty resumes to prepare for team selection. I’d never done anything like this before, so the task was daunting. However, early on I established a system wherein I would sort candidates into pools based on their strongest skills. In my mind, the best way to keep all aspects of the project running smoothly would be to recruit a variety of diverse skillsets and backgrounds.</p>
+
+      <p>The night of team selection, all seven team leads met with the CS chair to begin the selection process. It wasn’t unlike the NFL draft, except that we didn’t use the snake method. Early on several of my top choices were picked by other leads, but I was still able to get all of the skills I had hoped to obtain.</p>
+
+      <p>Thinking back on this night, I think the greatest thing I learned was that you cannot judge someone too harshly based on their resume alone. Two of my teammates with the plainest resumes ended up being critical team players who possessed great insight and strong skillsets. 
+      </p>
+
+      <h2>Establishing Processes</h2>
+      <p>Before the team had even assembled for the first time, I decided that I wanted to have as much of our team infrastructure ready to go as possible so everyone could hit the ground running. The first thing I did was setup a <a href='http://willhopper.com/capstone'>central team site</a>, linking things like our meeting notes, calendars, scrum board and GitHub repos.</p>
+
+      <p>More importantly, I immediately set out to find a (free) way to emulate the Jira scrum process I was used to from work. I first settled on Axosoft and did my best to prepare our sprint and ticket structure. To help everyone get up to speed, I wrote a <a href='http://willhopper.com/capstone/scrumworkflow.html'>simple guide to the scrum process</a></p>
+
+      <p>I set up our projects and backlogs much like it’s done on the engineering teams at Puppet. Ultimately, Axosoft was lacking in the functionality that we needed, and we ended up switching to YouTrack. I was then able to fully customize our scrum board and each of the ticket fields. YouTrack was more flexible when it came to reporting based on story point completion, so I was able to setup some useful charts and tables as well </p>
+
+      <div class='col-md-offset-1'>
+        <img class='projectIntroImg' width="1000" src='img/youtrack.png'>
+      </div>
+      <br>
+      <p>While doing this, I started to realize how much I actually enjoy this kind of work. I love organization and structure, and I’m at my best when I’m creating it. Hopefully I’ll get to do this again at some point in my career!</p>
+
+      <h2>Project Scoping and User Story Mapping</h2>
+      <p>Once the team was settled in, we actually picked our project. We were to created web and Android watch applications to demonstrate the capabilities of S-Store, a real-time / streaming database system. Our applications would mimic a monitoring system for an Intensive Care Unit, alerting doctors when any biometric data from a patient suggested an emergency. Since S-Store is all about streaming data, our application had to receive a constant stream of information such as EKG statistics about individual patients and graph it in real time.</p>
+
+      <p>In order to begin planning these applications, we set up a meeting with our sponsor, a Portland State professor working with folks at Brown University on S-Store. During the meeting, I brought an absurd number of multi-colored notecards and had everyone write down small user stories for any aspect of the project they could think of.</p>
+
+      <div class='col-md-offset-1'>
+        <img class='projectIntroImg' width="1000" src='img/user-stories-2.jpg'>
+      </div>
+      <br>
+
+      <p>Side note: I used O’Reilly’s <a href='http://shop.oreilly.com/product/0636920033851.do'>User Story Mapping</a> as a reference on the correct way to write and use user stories.</p>
+
+      <p>Once we had completed our initial user stories, I converted each into an epic in YouTrack and worked with the team to break each down into actionable items. Shortly after, we were ready to organize our backlog and begin our first sprint!</p>
+
+      <h2>People Management</h2>
+      <p>Perhaps the most valuable aspect of this entire project for me was having the opportunity to see what it takes to manage the needs of a group of developers. We had an excellent group without much drama or conflict, but there were a few times that I was required to step in to resolve minor issues.</p>
+
+      <p>The most interesting experience I had in this area was delivering two rounds of 360 reviews to each team member. We had a week to rate each other, including comments. I was to read over an aggregate summary of feedback for each individual and deliver advice for improvement. My approach here was to remain as positive as possible and convey each complaint as an opportunity to improve rather than a failure. My teammates responded well to this and we saw lots of improvement between the midpoint of the project and the final.</p>
+
+      <h2>The Completed Project</h2>
+      <p>Six months went very smoothly for our team, and we finished most of the major features of our project a few weeks ahead of schedule. It wasn’t the most beautiful web application ever produced, but under the hood it solved the problems that it needed to. I was very proud of my entire team for stepping up to learn technologies that they’d never used before!</p>
+
+      <p>The front-end was mainly JavaScript and utilized a small library called Smoothie Charts to render our real-time patient data. The backend was written in Java, using the Vert.x library. Finally, our smart watch application was a standard Java Android app hooked into the backend API to receive patient data.</p>
+
+      <div class='col-md-offset-1'>
+        <img class='projectIntroImg' width="1000" src='img/api-arch.png'>
+      </div>
+      <br>
+      <div class='col-md-offset-1'>
+        <img class='projectIntroImg' width="1000" src='img/android.png'>
+      </div>
+      <br>
+      <div class='col-md-offset-1'>
+        <img class='projectIntroImg' width="1000" src='img/process.png'>
+      </div>
+    </div>
+  </div>
+</div>
